@@ -31,7 +31,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="labelNome" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtNome" min="-2" pref="340" max="-2" attributes="0"/>
+                              <Component id="txtEntrada_nome" min="-2" pref="340" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -40,8 +40,8 @@
                               </Group>
                               <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtUsuario" max="32767" attributes="0"/>
-                                  <Component id="txtSenha" max="32767" attributes="0"/>
+                                  <Component id="txtEntrada_cpf" max="32767" attributes="0"/>
+                                  <Component id="txtEntrada_senha" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -61,19 +61,19 @@
               <EmptySpace pref="58" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="txtNome" max="32767" attributes="0"/>
+                      <Component id="txtEntrada_nome" max="32767" attributes="0"/>
                       <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="labelNome" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtUsuario" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="txtEntrada_cpf" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtSenha" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="txtEntrada_senha" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
@@ -92,7 +92,7 @@
         <Property name="text" type="java.lang.String" value="Nome Completo:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtUsuario">
+    <Component class="javax.swing.JTextField" name="txtEntrada_cpf">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -102,7 +102,7 @@
         <Property name="text" type="java.lang.String" value="Senha:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtSenha">
+    <Component class="javax.swing.JTextField" name="txtEntrada_senha">
     </Component>
     <Component class="javax.swing.JButton" name="btCriaUsuario">
       <Properties>
@@ -112,6 +112,9 @@
         <Property name="text" type="java.lang.String" value="Criar Usu&#xe1;rio"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCriaUsuarioActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -121,7 +124,7 @@
         <Property name="text" type="java.lang.String" value="CPF:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNome">
+    <Component class="javax.swing.JTextField" name="txtEntrada_nome">
     </Component>
   </SubComponents>
 </Form>

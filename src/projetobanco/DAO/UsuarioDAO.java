@@ -29,6 +29,13 @@ public class UsuarioDAO {
         ResultSet resultado = statement.getResultSet();
         return resultado;
     }
+    public void inserir (Usuario usuario) throws SQLException{
+        String sql = "insert into usuario (nome, cpf, senha) values " 
+                + "('"+usuario.getNome()+"', '"+usuario.getCpf()+"', '"+usuario.getSenha()+"')";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.execute();
+        conn.close();
+    }
        
 }
 

@@ -182,6 +182,7 @@ public class JanelaLogin extends javax.swing.JFrame {
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         control.loginUsuario();
+        this.dispose();
     }//GEN-LAST:event_btLoginActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed

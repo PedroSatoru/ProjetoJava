@@ -20,7 +20,7 @@ public class UsuarioDAO {
     }
     
     public ResultSet consultar (Usuario usuario) throws SQLException {
-        String sql = "select * from Usuarios where CPF = ? and Senha = ?";
+        String sql = "select * from usuario where cpf = ? and senha = ?";
 
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, usuario.getCpf());

@@ -105,6 +105,7 @@ public class JanelaLogin extends javax.swing.JFrame {
         btLogin = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -124,6 +125,15 @@ public class JanelaLogin extends javax.swing.JFrame {
         });
 
         jMenu1.setText("File");
+
+        jMenuItem1.setText("CriarUsuario");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -174,6 +184,11 @@ public class JanelaLogin extends javax.swing.JFrame {
         control.loginUsuario();
     }//GEN-LAST:event_btLoginActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        JanelaCriaUsuario cf= new JanelaCriaUsuario();
+        cf.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -216,6 +231,7 @@ private ControllerLogin control;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtSenha;
     // End of variables declaration//GEN-END:variables

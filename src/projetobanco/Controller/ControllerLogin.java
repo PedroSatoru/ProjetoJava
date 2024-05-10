@@ -13,6 +13,7 @@ import projetobanco.DAO.Conexao;
 import projetobanco.DAO.UsuarioDAO;
 import projetobanco.Model.Usuario;
 import projetobanco.View.JanelaLogin;
+import projetobanco.View.JanelaMenu;
 
 public class ControllerLogin {
     private JanelaLogin view;
@@ -32,6 +33,11 @@ public class ControllerLogin {
             ResultSet res = dao.consultar(usuario);
             if (res.next()){
                 JOptionPane.showMessageDialog(view, "Login feito!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                String nome = res.getString("nome");
+                String cpf = res.getString("cpf");
+                String senha = res.getString("senha");
+                JanelaMenu viewUsuario = new JanelaMenu(new Usuario(nome,cpf,senha));
+                viewUsuario.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(view, "Login não efetuado!");
             }

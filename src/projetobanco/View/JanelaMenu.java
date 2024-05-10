@@ -4,6 +4,8 @@
  */
 package projetobanco.View;
 
+import projetobanco.Model.Usuario;
+
 /**
  *
  * @author Pedro Satoru
@@ -13,8 +15,10 @@ public class JanelaMenu extends javax.swing.JFrame {
     /**
      * Creates new form JanelaMenu
      */
-    public JanelaMenu() {
+    public JanelaMenu(Usuario usuario) {
         initComponents();
+        System.out.println(usuario);
+        labelNome.setText(usuario.getNome());
     }
 
     /**

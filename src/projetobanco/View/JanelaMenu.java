@@ -51,6 +51,11 @@ public class JanelaMenu extends javax.swing.JFrame {
 
         btSaldo.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btSaldo.setText("Saldo");
+        btSaldo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSaldoActionPerformed(evt);
+            }
+        });
 
         btExtrato.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btExtrato.setText("Extrato");
@@ -133,6 +138,11 @@ public class JanelaMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaldoActionPerformed
+        JanelaSaldo js= new JanelaSaldo();
+        js.setVisible(true);
+    }//GEN-LAST:event_btSaldoActionPerformed
 
     /**
      * @param args the command line arguments

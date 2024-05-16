@@ -36,7 +36,12 @@ public class ControllerLogin {
                 String nome = res.getString("nome");
                 String cpf = res.getString("cpf");
                 String senha = res.getString("senha");
-                JanelaMenu viewUsuario = new JanelaMenu(new Usuario(nome,cpf,senha));
+                Double real = res.getDouble("reais");
+                Double btc = res.getDouble("btc");
+                Double eth = res.getDouble("eth");
+                Double rip = res.getDouble("rip");
+                
+                JanelaMenu viewUsuario = new JanelaMenu(new Usuario(nome,cpf,senha,real,btc,eth,rip));
                 viewUsuario.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(view, "Login não efetuado!");

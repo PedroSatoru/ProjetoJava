@@ -12,10 +12,13 @@ import projetobanco.Model.Usuario;
  */
 public class JanelaMenu extends javax.swing.JFrame {
 
+    private Usuario usuario;
+
     /**
      * Creates new form JanelaMenu
      */
     public JanelaMenu(Usuario usuario) {
+        this.usuario = usuario;
         initComponents();
         System.out.println(usuario);
         labelNome.setText(usuario.getNome());
@@ -140,7 +143,7 @@ public class JanelaMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaldoActionPerformed
-        JanelaSaldo js= new JanelaSaldo();
+        JanelaSaldo js= new JanelaSaldo(this.usuario);
         js.setVisible(true);
     }//GEN-LAST:event_btSaldoActionPerformed
 

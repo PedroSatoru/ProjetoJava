@@ -77,6 +77,25 @@ public class UsuarioDAO {
             }
         }
     }
+    public Usuario obterUsuarioPorCpf(String cpf) throws SQLException {
+        String sql = "SELECT * FROM public.usuario WHERE cpf = ?";
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setString(1, cpf);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    String nome = resultSet.getString("nome");
+                    String senha = resultSet.getString("senha"); // Assuming you need this, adjust if necessary
+                    double reais = resultSet.getDouble("reais");
+                    double btc = resultSet.getDouble("btc");
+                    double eth = resultSet.getDouble("eth");
+                    double rip = resultSet.getDouble("rip");
+                    return new Usuario(nome, cpf, senha, reais, btc, eth, rip); // Adjust constructor as needed
+                } else {
+                    throw new SQLException("Usuário não encontrado");
+                }
+            }
+        }
+    }
 }
 
 

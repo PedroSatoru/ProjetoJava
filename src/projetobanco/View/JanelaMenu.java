@@ -5,6 +5,18 @@
 package projetobanco.View;
 
 import projetobanco.Model.Usuario;
+import java.sql.ResultSet;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import projetobanco.DAO.Conexao;
+import projetobanco.DAO.UsuarioDAO;
+import projetobanco.Model.Usuario;
+import projetobanco.View.JanelaLogin;
+import projetobanco.View.JanelaMenu;
+import projetobanco.View.JanelaSaldo;
 
 /**
  *
@@ -153,8 +165,15 @@ public class JanelaMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaldoActionPerformed
-        JanelaSaldo js= new JanelaSaldo(this.usuario);
+        Conexao conexao = new Conexao();
+        try {
+        Connection conn = conexao.getConnection(); // Supondo que você tenha um método para obter a conexão
+        JanelaSaldo js = new JanelaSaldo(usuario, conn);
         js.setVisible(true);
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Erro de conexão ao abrir a janela de saldo: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+    
     }//GEN-LAST:event_btSaldoActionPerformed
 
     private void btDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDepositoActionPerformed

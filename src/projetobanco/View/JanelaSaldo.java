@@ -6,27 +6,28 @@ package projetobanco.View;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import projetobanco.Controller.ControllerSaldo;
 import projetobanco.Model.Usuario;
-
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Pedro Satoru
  */
 public class JanelaSaldo extends javax.swing.JFrame {
     private Usuario usuario;
+   
 
     /**
      * Creates new form JanelaSaldo
      */
-    public JanelaSaldo(Usuario usuario) {
+    public JanelaSaldo(Usuario usuario,  Connection conn) {
+        this.usuario = usuario;
+        control = new ControllerSaldo(conn);
         initComponents();
-        System.out.println(usuario);
-        lbNome.setText(usuario.getNome());
-        lbCpf.setText(usuario.getCpf());
-        lbReais.setText(String.format("%.2f", usuario.getReais()));
-        lbBtc.setText(String.format("%.2f", usuario.getBtc()));
-        lbEth.setText(String.format("%.2f", usuario.getEth()));
-        lbRip.setText(String.format("%.2f", usuario.getRip()));
+        atualizarDadosUsuario();
+
     }
 
     public JLabel getjLabel1() {
@@ -132,6 +133,21 @@ public class JanelaSaldo extends javax.swing.JFrame {
     public void setLbRip(JLabel lbRip) {
         this.lbRip = lbRip;
     }
+     private void atualizarDadosUsuario() {
+        try {
+            Usuario usuarioAtualizado = control.atualizarDadosUsuario(usuario.getCpf());
+
+            lbNome.setText(usuarioAtualizado.getNome());
+            lbCpf.setText(usuarioAtualizado.getCpf());
+            lbReais.setText(String.format("%.2f", usuarioAtualizado.getReais()));
+            lbBtc.setText(String.format("%.2f", usuarioAtualizado.getBtc()));
+            lbEth.setText(String.format("%.2f", usuarioAtualizado.getEth()));
+            lbRip.setText(String.format("%.2f", usuarioAtualizado.getRip()));
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Erro ao atualizar dados do usuário: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -335,7 +351,7 @@ public class JanelaSaldo extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-
+ private ControllerSaldo control;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

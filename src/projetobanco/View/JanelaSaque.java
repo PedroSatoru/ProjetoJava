@@ -136,11 +136,8 @@ public class JanelaSaque extends javax.swing.JFrame {
          String valorStr = this.getTxtValor().getText();
         try {
             double valorDeposito = Double.parseDouble(valorStr);
-
-
             control.Saquar(usuario, valorDeposito);
             JOptionPane.showMessageDialog(this, "Saque realizado com sucesso!");
-
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Por favor, insira um valor válido.", "Erro", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ex) {

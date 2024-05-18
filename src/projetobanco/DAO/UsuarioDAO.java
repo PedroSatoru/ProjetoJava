@@ -36,7 +36,8 @@ public class UsuarioDAO {
         statement.execute();
         conn.close();
     }
-  public void deposito(String cpf, double valorDeposito) throws SQLException {
+
+    public void deposito(String cpf, double valorDeposito) throws SQLException {
         String sqlSelect = "SELECT reais FROM public.usuario WHERE cpf = ?";
         String sqlUpdate = "UPDATE public.usuario SET reais = ? WHERE cpf = ?";
 
@@ -54,8 +55,28 @@ public class UsuarioDAO {
                     statementUpdate.executeUpdate();
                 }
             }
+        }
+    }
+    public void saque(String cpf, double valorDeposito) throws SQLException {
+        String sqlSelect = "SELECT reais FROM public.usuario WHERE cpf = ?";
+        String sqlUpdate = "UPDATE public.usuario SET reais = ? WHERE cpf = ?";
+
+        try (PreparedStatement statementSelect = conn.prepareStatement(sqlSelect)) {
+            statementSelect.setString(1, cpf);
+            ResultSet resultSet = statementSelect.executeQuery();
+
+            if (resultSet.next()) {
+                double valorAtual = resultSet.getDouble("reais");
+                double valorNovo = valorAtual + valorDeposito;
+
+                try (PreparedStatement statementUpdate = conn.prepareStatement(sqlUpdate)) {
+                    statementUpdate.setDouble(1, valorNovo);
+                    statementUpdate.setString(2, cpf);
+                    statementUpdate.executeUpdate();
+                }
             }
         }
+    }
 }
 
 

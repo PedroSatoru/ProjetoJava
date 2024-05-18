@@ -73,6 +73,11 @@ public class JanelaMenu extends javax.swing.JFrame {
 
         btSaque.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btSaque.setText("Saque");
+        btSaque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSaqueActionPerformed(evt);
+            }
+        });
 
         btCompra.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btCompra.setText("Compra");
@@ -156,6 +161,11 @@ public class JanelaMenu extends javax.swing.JFrame {
         JanelaDeposito jd = new JanelaDeposito(this.usuario);
         jd.setVisible(true);
     }//GEN-LAST:event_btDepositoActionPerformed
+
+    private void btSaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaqueActionPerformed
+        JanelaSaque jsa =new JanelaSaque(this.usuario);
+        jsa.setVisible(true);
+    }//GEN-LAST:event_btSaqueActionPerformed
 
     /**
      * @param args the command line arguments

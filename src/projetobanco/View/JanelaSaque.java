@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import projetobanco.Controller.ControllSaque;
 import projetobanco.Controller.ControllerDeposito;
 import projetobanco.Model.Usuario;
 
@@ -17,25 +18,26 @@ import projetobanco.Model.Usuario;
  *
  * @author Pedro Satoru
  */
-public class JanelaDeposito extends javax.swing.JFrame {
+public class JanelaSaque extends javax.swing.JFrame {
 
     /**
-     * Creates new form JanelaDeposito
+     * Creates new form JanelaSaque
      */
     private Usuario usuario;
-    public JanelaDeposito(Usuario usuario) {
+    public JanelaSaque(Usuario usuario) {
         this.usuario=usuario;
         initComponents();
-        lbNome.setText(usuario.getNome());
-        control = new ControllerDeposito(this);
+        txtNome.setText(usuario.getNome());
+        control = new ControllSaque(this);
+        
     }
 
-    public JButton getBtDepositar() {
-        return btDepositar;
+    public JButton getBtSacar() {
+        return btSacar;
     }
 
-    public void setBtDepositar(JButton btDepositar) {
-        this.btDepositar = btDepositar;
+    public void setBtSacar(JButton btSacar) {
+        this.btSacar = btSacar;
     }
 
     public JLabel getjLabel1() {
@@ -46,12 +48,12 @@ public class JanelaDeposito extends javax.swing.JFrame {
         this.jLabel1 = jLabel1;
     }
 
-    public JLabel getLbNome() {
-        return lbNome;
+    public JLabel getTxtNome() {
+        return txtNome;
     }
 
-    public void setLbNome(JLabel lbNome) {
-        this.lbNome = lbNome;
+    public void setTxtNome(JLabel txtNome) {
+        this.txtNome = txtNome;
     }
 
     public JTextField getTxtValor() {
@@ -61,7 +63,6 @@ public class JanelaDeposito extends javax.swing.JFrame {
     public void setTxtValor(JTextField txtValor) {
         this.txtValor = txtValor;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,25 +74,25 @@ public class JanelaDeposito extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        lbNome = new javax.swing.JLabel();
+        txtNome = new javax.swing.JLabel();
         txtValor = new javax.swing.JTextField();
-        btDepositar = new javax.swing.JButton();
+        btSacar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel1.setText("Quanto deseja depositar");
+        jLabel1.setText("Quanto você deseja sacar");
 
-        lbNome.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        lbNome.setText("nome_usuario");
+        txtNome.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        txtNome.setText("Nome_usuario");
 
-        txtValor.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtValor.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
 
-        btDepositar.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        btDepositar.setText("Depositar");
-        btDepositar.addActionListener(new java.awt.event.ActionListener() {
+        btSacar.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        btSacar.setText("Sacar");
+        btSacar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btDepositarActionPerformed(evt);
+                btSacarActionPerformed(evt);
             }
         });
 
@@ -102,17 +103,17 @@ public class JanelaDeposito extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtValor)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbNome))))
+                                .addComponent(jLabel1)
+                                .addGap(27, 27, 27)
+                                .addComponent(txtNome))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(btDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(132, Short.MAX_VALUE))
+                        .addGap(201, 201, 201)
+                        .addComponent(btSacar)))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,27 +121,25 @@ public class JanelaDeposito extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(lbNome))
+                    .addComponent(txtNome))
+                .addGap(18, 18, 18)
+                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(btDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addComponent(btSacar)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDepositarActionPerformed
-
- 
-        String valorStr = this.getTxtValor().getText();
+    private void btSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSacarActionPerformed
+         String valorStr = this.getTxtValor().getText();
         try {
             double valorDeposito = Double.parseDouble(valorStr);
 
 
-            control.depositar(usuario, valorDeposito);
-            JOptionPane.showMessageDialog(this, "Depósito realizado com sucesso!");
+            control.Saquar(usuario, valorDeposito);
+            JOptionPane.showMessageDialog(this, "Saque realizado com sucesso!");
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Por favor, insira um valor válido.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -149,7 +148,8 @@ public class JanelaDeposito extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Erro ao realizar depósito: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
         this.dispose();
-    }//GEN-LAST:event_btDepositarActionPerformed
+          
+    }//GEN-LAST:event_btSacarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,29 +168,29 @@ public class JanelaDeposito extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(JanelaDeposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(JanelaSaque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(JanelaDeposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(JanelaSaque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(JanelaDeposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(JanelaSaque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(JanelaDeposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//            java.util.logging.Logger.getLogger(JanelaSaque.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
 //
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new JanelaDeposito().setVisible(true);
+//                new JanelaSaque().setVisible(true);
 //            }
 //        });
 //    }
-    private ControllerDeposito control;
+private ControllSaque control;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btDepositar;
+    private javax.swing.JButton btSacar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lbNome;
+    private javax.swing.JLabel txtNome;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

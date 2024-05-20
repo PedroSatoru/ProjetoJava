@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import projetobanco.DAO.Conexao;
 import projetobanco.Model.Usuario;
 import projetobanco.View.JanelaSaque;
@@ -37,6 +38,13 @@ public class ControllSaque {
             if (resultSet.next()) {
                 double valorAtual = resultSet.getDouble("reais");
                 double valorNovo = valorAtual - valorDeposito;
+                if (valorNovo < 0){
+                   valorNovo=valorAtual;
+                   JOptionPane.showMessageDialog(view, "Você não possui saldo suficiente para essa operação");
+                }
+                if (valorNovo > 0){
+                   JOptionPane.showMessageDialog(view, "Saque Concluido com sucesso");
+                }
 
                 try (PreparedStatement statementUpdate = conn.prepareStatement(sqlUpdate)) {
                     statementUpdate.setDouble(1, valorNovo);

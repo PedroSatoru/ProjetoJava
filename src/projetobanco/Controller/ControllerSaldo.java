@@ -9,16 +9,17 @@ import java.sql.SQLException;
 import projetobanco.DAO.UsuarioDAO;
 import projetobanco.Model.Usuario;
 import projetobanco.View.JanelaSaldo;
+import projetobanco.View.JanelaSenhaSaque;
 
 public class ControllerSaldo {
      private Connection conn;
-     private JanelaSaldo view;
+     private JanelaSenhaSaque view;
 
     public ControllerSaldo(Connection conn) {
         this.conn = conn;
     }
 
-    public ControllerSaldo(JanelaSaldo view) {
+    public ControllerSaldo(JanelaSenhaSaque view) {
         this.view = view;
     }
     
@@ -27,5 +28,8 @@ public class ControllerSaldo {
         UsuarioDAO usuarioDAO = new UsuarioDAO(conn);
         return usuarioDAO.obterUsuarioPorCpf(cpf);
     }
+    
+    
+    
 }
 

@@ -168,7 +168,7 @@ public class JanelaMenu extends javax.swing.JFrame {
         Conexao conexao = new Conexao();
         try {
         Connection conn = conexao.getConnection(); // Supondo que você tenha um método para obter a conexão
-        JanelaSaldo js = new JanelaSaldo(usuario, conn);
+        JanelaSenhaSaque js = new JanelaSenhaSaque(usuario);
         js.setVisible(true);
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Erro de conexão ao abrir a janela de saldo: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);

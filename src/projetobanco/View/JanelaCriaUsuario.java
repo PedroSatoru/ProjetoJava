@@ -169,7 +169,6 @@ public class JanelaCriaUsuario extends javax.swing.JFrame {
 
     private void btCriaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCriaUsuarioActionPerformed
         controller.salvarUsuario();
-        this.dispose();
     }//GEN-LAST:event_btCriaUsuarioActionPerformed
 
     /**

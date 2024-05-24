@@ -77,6 +77,7 @@ public class JanelaSaque extends javax.swing.JFrame {
         txtNome = new javax.swing.JLabel();
         txtValor = new javax.swing.JTextField();
         btSacar = new javax.swing.JButton();
+        btVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +97,14 @@ public class JanelaSaque extends javax.swing.JFrame {
             }
         });
 
+        btVoltar.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        btVoltar.setText("Voltar");
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,7 +121,9 @@ public class JanelaSaque extends javax.swing.JFrame {
                                 .addComponent(txtNome))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(201, 201, 201)
-                        .addComponent(btSacar)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btSacar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -126,7 +137,9 @@ public class JanelaSaque extends javax.swing.JFrame {
                 .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btSacar)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(btVoltar)
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         pack();
@@ -144,6 +157,10 @@ public class JanelaSaque extends javax.swing.JFrame {
         this.dispose();
           
     }//GEN-LAST:event_btSacarActionPerformed
+
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,6 +200,7 @@ private ControllSaque control;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btSacar;
+    private javax.swing.JButton btVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel txtNome;
     private javax.swing.JTextField txtValor;

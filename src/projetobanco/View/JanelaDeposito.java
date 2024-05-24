@@ -76,6 +76,7 @@ public class JanelaDeposito extends javax.swing.JFrame {
         lbNome = new javax.swing.JLabel();
         txtValor = new javax.swing.JTextField();
         btDepositar = new javax.swing.JButton();
+        btVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +96,14 @@ public class JanelaDeposito extends javax.swing.JFrame {
             }
         });
 
+        btVoltar.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        btVoltar.setText("Voltar");
+        btVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,8 +119,10 @@ public class JanelaDeposito extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lbNome))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(btDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(249, 249, 249)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btDepositar, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(btVoltar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -123,9 +134,11 @@ public class JanelaDeposito extends javax.swing.JFrame {
                     .addComponent(lbNome))
                 .addGap(30, 30, 30)
                 .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGap(28, 28, 28)
                 .addComponent(btDepositar, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(55, 55, 55)
+                .addComponent(btVoltar)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         pack();
@@ -145,6 +158,10 @@ public class JanelaDeposito extends javax.swing.JFrame {
         }
         this.dispose();
     }//GEN-LAST:event_btDepositarActionPerformed
+
+    private void btVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoltarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,6 +201,7 @@ public class JanelaDeposito extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btDepositar;
+    private javax.swing.JButton btVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbNome;
     private javax.swing.JTextField txtValor;

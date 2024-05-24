@@ -42,6 +42,7 @@ public class ControllSaque {
                 if (valorNovo < 0){
                    valorNovo=valorAtual;
                    JOptionPane.showMessageDialog(view, "Você não possui saldo suficiente para essa operação");
+                   return;
                 }
                 else if (valorNovo > 0){
                    JOptionPane.showMessageDialog(view, "Saque Concluido com sucesso\n Seu saldo atual:" + valorNovo);

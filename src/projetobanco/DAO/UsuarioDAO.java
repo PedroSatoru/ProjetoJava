@@ -102,7 +102,33 @@ public class UsuarioDAO {
         statement.setString(1, cpf);
         return statement.executeQuery();
     }
+    public void adicionarCriptomoeda(Usuario usuario, String criptomoeda, double quantidade, double valor, double cotacao, double taxa) throws SQLException {
+        
+        String sqlUpdate = "UPDATE usuario SET " + criptomoeda.toLowerCase() + " = " + criptomoeda.toLowerCase() + " + ? WHERE cpf = ?";
+        try (PreparedStatement stmtUpdate = conn.prepareStatement(sqlUpdate)) {
+            stmtUpdate.setDouble(1, quantidade);
+            stmtUpdate.setString(2, usuario.getCpf());
+            stmtUpdate.executeUpdate();
+        }
+        // Salvar a transação no extrato
+        String sqlInsert = "INSERT INTO transacao (cpf, tipo, valor, cotacao, taxa, saldo_reais, saldo_btc, saldo_eth, saldo_xrp, moeda) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement stmtInsert = conn.prepareStatement(sqlInsert)) {
+            stmtInsert.setString(1, usuario.getCpf());
+            stmtInsert.setString(2, "COMPRA");
+            stmtInsert.setDouble(3, valor);
+            stmtInsert.setDouble(4, cotacao);
+            stmtInsert.setDouble(5, taxa);
+            stmtInsert.setDouble(6, usuario.getReais());
+            stmtInsert.setDouble(7, usuario.getBtc());
+            stmtInsert.setDouble(8, usuario.getEth());
+            stmtInsert.setDouble(9, usuario.getRip());
+            stmtInsert.setString(10, criptomoeda);
+            stmtInsert.executeUpdate();
+        }
+    }
 }
+    
+
 
 
 

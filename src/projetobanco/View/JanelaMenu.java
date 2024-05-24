@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package projetobanco.View;
 
 import projetobanco.Model.Usuario;
@@ -11,6 +7,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import projetobanco.Controller.ControllerMenu;
 import projetobanco.DAO.Conexao;
 import projetobanco.DAO.UsuarioDAO;
 import projetobanco.Model.Usuario;
@@ -25,7 +22,7 @@ import projetobanco.View.JanelaSaldo;
 public class JanelaMenu extends javax.swing.JFrame {
 
     private Usuario usuario;
-
+    private ControllerMenu control = new ControllerMenu(this);
     /**
      * Creates new form JanelaMenu
      */
@@ -34,6 +31,7 @@ public class JanelaMenu extends javax.swing.JFrame {
         initComponents();
         System.out.println(usuario);
         labelNome.setText(usuario.getNome());
+        control.abrirMenu();
     }
 
     /**
@@ -54,7 +52,6 @@ public class JanelaMenu extends javax.swing.JFrame {
         btCompra = new javax.swing.JButton();
         btVenda = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        btAtualiza = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -106,9 +103,6 @@ public class JanelaMenu extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setText("O que deseja fazer hoje?");
 
-        btAtualiza.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        btAtualiza.setText("Atualizar Valores");
-
         btSair.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         btSair.setText("Sair");
         btSair.addActionListener(new java.awt.event.ActionListener() {
@@ -121,10 +115,6 @@ public class JanelaMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(166, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(157, 157, 157))
             .addGroup(layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -138,19 +128,20 @@ public class JanelaMenu extends javax.swing.JFrame {
                     .addComponent(btVenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(60, 60, 60))
             .addGroup(layout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelNome)
+                .addContainerGap(192, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelNome))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(btAtualiza))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(157, 157, 157))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(191, 191, 191))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,10 +165,8 @@ public class JanelaMenu extends javax.swing.JFrame {
                     .addComponent(btCompra)
                     .addComponent(btVenda))
                 .addGap(18, 18, 18)
-                .addComponent(btAtualiza)
-                .addGap(18, 18, 18)
                 .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -255,7 +244,6 @@ public class JanelaMenu extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAtualiza;
     private javax.swing.JButton btCompra;
     private javax.swing.JButton btDeposito;
     private javax.swing.JButton btExtrato;

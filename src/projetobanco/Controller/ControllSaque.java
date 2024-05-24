@@ -31,6 +31,7 @@ public class ControllSaque {
 
     String sqlSelect = "SELECT reais FROM public.usuario WHERE cpf = ?";
     String sqlUpdate = "UPDATE public.usuario SET reais = ? WHERE cpf = ?";
+    String sqlInsertTransacao = "INSERT INTO public.transacao (cpf, data_hora, tipo, valor, cotacao, taxa, saldo_reais, saldo_btc, saldo_eth, saldo_xrp, moeda) VALUES (?, CAST(TO_CHAR(CURRENT_TIMESTAMP, 'YYYY-MM-DD HH24:MI:SS') AS TIMESTAMP), ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     try (PreparedStatement statementSelect = conn.prepareStatement(sqlSelect)) {
             statementSelect.setString(1, usuario.getCpf());
             ResultSet resultSet = statementSelect.executeQuery();
@@ -42,14 +43,27 @@ public class ControllSaque {
                    valorNovo=valorAtual;
                    JOptionPane.showMessageDialog(view, "Você não possui saldo suficiente para essa operação");
                 }
-                if (valorNovo > 0){
-                   JOptionPane.showMessageDialog(view, "Saque Concluido com sucesso");
+                else if (valorNovo > 0){
+                   JOptionPane.showMessageDialog(view, "Saque Concluido com sucesso\n Seu saldo atual:" + valorNovo);
                 }
 
                 try (PreparedStatement statementUpdate = conn.prepareStatement(sqlUpdate)) {
                     statementUpdate.setDouble(1, valorNovo);
                     statementUpdate.setString(2, usuario.getCpf());
                     statementUpdate.executeUpdate();
+                }
+                try (PreparedStatement statementInsertTransacao = conn.prepareStatement(sqlInsertTransacao)) {
+                    statementInsertTransacao.setString(1, usuario.getCpf());
+                    statementInsertTransacao.setString(2, "-");
+                    statementInsertTransacao.setDouble(3, valorDeposito);
+                    statementInsertTransacao.setDouble(4, 0.0); 
+                    statementInsertTransacao.setDouble(5, 0.0); 
+                    statementInsertTransacao.setDouble(6, valorNovo);
+                    statementInsertTransacao.setDouble(7, usuario.getBtc());
+                    statementInsertTransacao.setDouble(8, usuario.getEth());
+                    statementInsertTransacao.setDouble(9, usuario.getRip());
+                    statementInsertTransacao.setString(10, "REAL");
+                    statementInsertTransacao.executeUpdate();
                 }
             }
         } finally {

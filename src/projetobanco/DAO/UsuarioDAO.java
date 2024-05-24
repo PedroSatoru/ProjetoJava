@@ -96,6 +96,12 @@ public class UsuarioDAO {
             }
         }
     }
+   public ResultSet ConsultaExtrato(String cpf) throws SQLException {
+        String sql = "SELECT * FROM public.transacao WHERE cpf = ?";
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, cpf);
+        return statement.executeQuery();
+    }
 }
 
 

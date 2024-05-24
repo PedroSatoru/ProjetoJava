@@ -34,6 +34,7 @@ public void depositar(Usuario usuario, double valorDeposito) throws SQLException
 
     String sqlSelect = "SELECT reais FROM public.usuario WHERE cpf = ?";
     String sqlUpdate = "UPDATE public.usuario SET reais = ? WHERE cpf = ?";
+    String sqlInsertTransacao = "INSERT INTO public.transacao (cpf, data_hora, tipo, valor, cotacao, taxa, saldo_reais, saldo_btc, saldo_eth, saldo_xrp, moeda) VALUES (?, CAST(TO_CHAR(CURRENT_TIMESTAMP, 'YYYY-MM-DD HH24:MI:SS') AS TIMESTAMP), ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     try (PreparedStatement statementSelect = conn.prepareStatement(sqlSelect)) {
             statementSelect.setString(1, usuario.getCpf());
             ResultSet resultSet = statementSelect.executeQuery();
@@ -46,6 +47,20 @@ public void depositar(Usuario usuario, double valorDeposito) throws SQLException
                     statementUpdate.setDouble(1, valorNovo);
                     statementUpdate.setString(2, usuario.getCpf());
                     statementUpdate.executeUpdate();
+                }
+                try (PreparedStatement statementInsertTransacao = conn.prepareStatement(sqlInsertTransacao)) {
+                    statementInsertTransacao.setString(1, usuario.getCpf());
+                    statementInsertTransacao.setString(2, "+");
+                    statementInsertTransacao.setDouble(3, valorDeposito);
+                    statementInsertTransacao.setDouble(4, 0.0); // Cotação (ajuste conforme necessário)
+                    statementInsertTransacao.setDouble(5, 0.0); // Taxa (ajuste conforme necessário)
+                    statementInsertTransacao.setDouble(6, valorNovo);
+                    statementInsertTransacao.setDouble(7, usuario.getBtc());
+                    statementInsertTransacao.setDouble(8, usuario.getEth());
+                    statementInsertTransacao.setDouble(9, usuario.getRip());
+                    statementInsertTransacao.setString(10, "REAL");
+                    
+                    statementInsertTransacao.executeUpdate();
                 }
             }
         } finally {

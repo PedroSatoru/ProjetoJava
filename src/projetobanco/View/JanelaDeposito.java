@@ -137,13 +137,8 @@ public class JanelaDeposito extends javax.swing.JFrame {
         String valorStr = this.getTxtValor().getText();
         try {
             double valorDeposito = Double.parseDouble(valorStr);
-
-
             control.depositar(usuario, valorDeposito);
-            JOptionPane.showMessageDialog(this, "Depósito realizado com sucesso!");
-
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Por favor, insira um valor válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Depósito realizado com sucesso!\n Seu novo saldo é:"+(usuario.getReais()+ valorDeposito));
         } catch (SQLException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(this, "Erro ao realizar depósito: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);

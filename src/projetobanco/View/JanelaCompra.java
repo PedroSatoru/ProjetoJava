@@ -1,11 +1,14 @@
 
 package projetobanco.View;
 
+import java.sql.SQLException;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import projetobanco.Controller.ControllerCompra;
 import projetobanco.Model.Usuario;
 
 /**
@@ -13,10 +16,12 @@ import projetobanco.Model.Usuario;
  * @author Pedro Satoru
  */
 public class JanelaCompra extends javax.swing.JFrame {
-
+    
+    private ControllerCompra control;
     private Usuario usuario;
     public JanelaCompra(Usuario usuario) {
         this.usuario=usuario;
+        control = new ControllerCompra(this,this.usuario);
         initComponents();
     }
 
@@ -84,29 +89,31 @@ public class JanelaCompra extends javax.swing.JFrame {
         this.jLabel1 = jLabel1;
     }
 
-    public JLabel getjLabel2() {
-        return jLabel2;
+    public JLabel getLbBtc() {
+        return lbBtc;
     }
 
-    public void setjLabel2(JLabel jLabel2) {
-        this.jLabel2 = jLabel2;
+    public void setLbBtc(JLabel lbBtc) {
+        this.lbBtc = lbBtc;
     }
 
-    public JLabel getjLabel3() {
-        return jLabel3;
+    public JLabel getLbEth() {
+        return lbEth;
     }
 
-    public void setjLabel3(JLabel jLabel3) {
-        this.jLabel3 = jLabel3;
+    public void setLbEth(JLabel lbEth) {
+        this.lbEth = lbEth;
     }
 
-    public JLabel getjLabel4() {
-        return jLabel4;
+    public JLabel getLbExp() {
+        return lbExp;
     }
 
-    public void setjLabel4(JLabel jLabel4) {
-        this.jLabel4 = jLabel4;
+    public void setLbExp(JLabel lbExp) {
+        this.lbExp = lbExp;
     }
+
+   
 
     public JLabel getjLabel5() {
         return jLabel5;
@@ -134,9 +141,9 @@ public class JanelaCompra extends javax.swing.JFrame {
         btBit = new javax.swing.JRadioButton();
         btRip = new javax.swing.JRadioButton();
         btEth = new javax.swing.JRadioButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbBtc = new javax.swing.JLabel();
+        lbEth = new javax.swing.JLabel();
+        lbExp = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtValor = new javax.swing.JTextField();
         btComprar = new javax.swing.JButton();
@@ -157,24 +164,39 @@ public class JanelaCompra extends javax.swing.JFrame {
 
         btRip.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btRip.setText("RIPPLE");
+        btRip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRipActionPerformed(evt);
+            }
+        });
 
         btEth.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btEth.setText("ETHERUM");
+        btEth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEthActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jLabel2.setText("Valor bitcoin");
+        lbBtc.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        lbBtc.setText("Valor bitcoin");
 
-        jLabel3.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jLabel3.setText("Valor Etherum");
+        lbEth.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        lbEth.setText("Valor Etherum");
 
-        jLabel4.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jLabel4.setText("Valor rip");
+        lbExp.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        lbExp.setText("Valor rip");
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel5.setText("Quantos reais deseja utilizar?");
 
         btComprar.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btComprar.setText("Comprar");
+        btComprar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btComprarActionPerformed(evt);
+            }
+        });
 
         btSair.setText("Sair");
         btSair.addActionListener(new java.awt.event.ActionListener() {
@@ -200,9 +222,9 @@ public class JanelaCompra extends javax.swing.JFrame {
                                     .addComponent(btBit))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)))
+                                    .addComponent(lbBtc)
+                                    .addComponent(lbEth)
+                                    .addComponent(lbExp)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(21, 21, 21)
                                 .addComponent(jLabel5))))
@@ -227,16 +249,16 @@ public class JanelaCompra extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lbBtc)
                     .addComponent(btBit))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btEth)
-                    .addComponent(jLabel3))
+                    .addComponent(lbEth))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btRip)
-                    .addComponent(jLabel4))
+                    .addComponent(lbExp))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -256,8 +278,36 @@ public class JanelaCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btBitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBitActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_btBitActionPerformed
+
+    private void btComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComprarActionPerformed
+        String criptomoeda = "";
+    if (btBit.isSelected()) {
+        criptomoeda = "Bitcoin";
+    } else if (btEth.isSelected()) {
+        criptomoeda = "Etherum";
+    } else if (btRip.isSelected()) {
+        criptomoeda = "Ripple";
+    }
+
+    double valorReais = Double.parseDouble(txtValor.getText());
+
+        try {
+        control.comprarCriptomoeda(criptomoeda, valorReais);
+        }catch (SQLException ex) {
+        JOptionPane.showMessageDialog(this, "Erro ao realizar a compra: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
+    }//GEN-LAST:event_btComprarActionPerformed
+
+    private void btEthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEthActionPerformed
+        
+    }//GEN-LAST:event_btEthActionPerformed
+
+    private void btRipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRipActionPerformed
+       
+    }//GEN-LAST:event_btRipActionPerformed
 
    
 
@@ -269,10 +319,10 @@ public class JanelaCompra extends javax.swing.JFrame {
     private javax.swing.JButton btSair;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lbBtc;
+    private javax.swing.JLabel lbEth;
+    private javax.swing.JLabel lbExp;
     private javax.swing.JTextField txtValor;
     // End of variables declaration//GEN-END:variables
 }

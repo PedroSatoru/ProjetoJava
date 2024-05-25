@@ -1,87 +1,120 @@
 package projetobanco.Controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import projetobanco.DAO.Conexao;
-import projetobanco.DAO.CriptomoedaDAO;
-import projetobanco.DAO.UsuarioDAO;
 import projetobanco.Model.Usuario;
 import projetobanco.View.JanelaCompra;
 
-import javax.swing.*;
-import java.sql.Connection;
-import java.sql.SQLException;
-
 public class ControllerCompra {
-    private JanelaCompra janelaCompra;
+
+    private JanelaCompra view;
     private Usuario usuario;
 
-    public ControllerCompra(JanelaCompra janelaCompra, Usuario usuario) {
-        this.janelaCompra = janelaCompra;
+    public ControllerCompra(JanelaCompra view, Usuario usuario) {
+        this.view = view;
         this.usuario = usuario;
-        this.janelaCompra.getBtComprar().addActionListener(e -> comprarCriptomoeda());
     }
 
-    private void comprarCriptomoeda() {
-        String criptomoeda = null;
-        double taxacao = 0;
+    public void comprarCriptomoeda(String criptomoeda, double valorReais) throws SQLException {
+        Conexao conexao = new Conexao();
+        Connection conn = conexao.getConnection();
 
-        if (janelaCompra.getBtBit().isSelected()) {
-            criptomoeda = "btc";
-            taxacao = 0.02; // 2% taxa Bitcoin
-        } else if (janelaCompra.getBtEth().isSelected()) {
-            criptomoeda = "eth";
-            taxacao = 0.01; // 1.5% taxa Etherum
-        } else if (janelaCompra.getBtRip().isSelected()) {
-            criptomoeda = "xrp";
-            taxacao = 0.01; // 1% taxa Ripple
-        }
+        String sqlSelectSaldo = "SELECT reais, btc, eth, rip FROM public.usuario WHERE cpf = ?";
+        String sqlUpdateSaldo = "UPDATE public.usuario SET reais = ?, btc = ?, eth = ?, rip = ? WHERE cpf = ?";
+        String sqlSelectCotacao = "SELECT btc, eth, xrp FROM public.criptomoedas WHERE id = 1"; // Assume-se que as cotações estão no registro com id=1
+        String sqlInsertTransacao = "INSERT INTO public.transacao (cpf, data_hora, tipo, valor, cotacao, taxa, saldo_reais, saldo_btc, saldo_eth, saldo_xrp, moeda) VALUES (?, CAST(TO_CHAR(CURRENT_TIMESTAMP, 'YYYY-MM-DD HH24:MI:SS') AS TIMESTAMP), ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        if (criptomoeda == null) {
-            JOptionPane.showMessageDialog(janelaCompra, "Selecione uma criptomoeda para comprar", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        double cotacao = 0.0;
+        double taxa = 0.00; 
 
-        double valorReais;
-        try {
-            valorReais = Double.parseDouble(janelaCompra.getTxtValor().getText());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(janelaCompra, "Valor inválido", "Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        // Obter cotação da criptomoeda
+        try (PreparedStatement statementSelectCotacao = conn.prepareStatement(sqlSelectCotacao)) {
+            ResultSet resultSetCotacao = statementSelectCotacao.executeQuery();
 
-        try (Connection conn = new Conexao().getConnection()) {
-            CriptomoedaDAO criptomoedaDAO = new CriptomoedaDAO(conn);
-            double valorCriptomoeda = criptomoedaDAO.getValorCriptomoeda(criptomoeda);
-
-            if (valorCriptomoeda <= 0) {
-                JOptionPane.showMessageDialog(janelaCompra, "Valor da criptomoeda inválido", "Erro", JOptionPane.ERROR_MESSAGE);
-                return;
+            if (resultSetCotacao.next()) {
+                switch (criptomoeda) {
+                    case "Bitcoin":
+                        cotacao = resultSetCotacao.getDouble("btc");
+                        taxa = 0.02;
+                        break;
+                    case "Etherum":
+                        cotacao = resultSetCotacao.getDouble("eth");
+                        taxa= 0.01;
+                        break;
+                    case "Ripple":
+                        cotacao = resultSetCotacao.getDouble("xrp");
+                        taxa = 0.01;
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(view, "Criptomoeda não encontrada.");
+                        return;
+                }
             }
+        }
 
-            // Aplicar taxação
-            double valorLiquido = valorReais - (valorReais * taxacao);
-            double quantidadeComprada = valorLiquido / valorCriptomoeda;
+        double quantidadeComprada = valorReais / cotacao * (1 - taxa);
 
-            // Atualizar os saldos no objeto usuario (simulação, deveria buscar e atualizar saldos reais)
-            double saldoReais = usuario.getReais() - valorReais;
-            double saldoBtc = usuario.getBtc();
-            double saldoEth = usuario.getEth();
-            double saldoXrp = usuario.getRip();
+        try (PreparedStatement statementSelectSaldo = conn.prepareStatement(sqlSelectSaldo)) {
+            statementSelectSaldo.setString(1, usuario.getCpf());
+            ResultSet resultSet = statementSelectSaldo.executeQuery();
 
-            if (criptomoeda.equals("btc")) {
-                saldoBtc += quantidadeComprada;
-            } else if (criptomoeda.equals("eth")) {
-                saldoEth += quantidadeComprada;
-            } else if (criptomoeda.equals("xrp")) {
-                saldoXrp += quantidadeComprada;
+            if (resultSet.next()) {
+                double saldoReaisAtual = resultSet.getDouble("reais");
+                double saldoBTC = resultSet.getDouble("btc");
+                double saldoETH = resultSet.getDouble("eth");
+                double saldoXRP = resultSet.getDouble("rip");
+
+                if (saldoReaisAtual < valorReais) {
+                    JOptionPane.showMessageDialog(view, "Você não possui saldo suficiente para essa operação");
+                    return;
+                }
+
+                double novoSaldoReais = saldoReaisAtual - valorReais;
+
+                // Atualizar saldos de criptomoedas
+                switch (criptomoeda) {
+                    case "Bitcoin":
+                        saldoBTC += quantidadeComprada;
+                        break;
+                    case "Etherum":
+                        saldoETH += quantidadeComprada;
+                        break;
+                    case "Ripple":
+                        saldoXRP += quantidadeComprada;
+                        break;
+                }
+
+                try (PreparedStatement statementUpdateSaldo = conn.prepareStatement(sqlUpdateSaldo)) {
+                    statementUpdateSaldo.setDouble(1, novoSaldoReais);
+                    statementUpdateSaldo.setDouble(2, saldoBTC);
+                    statementUpdateSaldo.setDouble(3, saldoETH);
+                    statementUpdateSaldo.setDouble(4, saldoXRP);
+                    statementUpdateSaldo.setString(5, usuario.getCpf());
+                    statementUpdateSaldo.executeUpdate();
+                }
+
+                try (PreparedStatement statementInsertTransacao = conn.prepareStatement(sqlInsertTransacao)) {
+                    statementInsertTransacao.setString(1, usuario.getCpf());
+                    statementInsertTransacao.setString(2, "+");
+                    statementInsertTransacao.setDouble(3, valorReais);
+                    statementInsertTransacao.setDouble(4, cotacao);
+                    statementInsertTransacao.setDouble(5, taxa);
+                    statementInsertTransacao.setDouble(6, novoSaldoReais);
+                    statementInsertTransacao.setDouble(7, saldoBTC);
+                    statementInsertTransacao.setDouble(8, saldoETH);
+                    statementInsertTransacao.setDouble(9, saldoXRP);
+                    statementInsertTransacao.setString(10, criptomoeda);
+                    statementInsertTransacao.executeUpdate();
+                }
+
+                JOptionPane.showMessageDialog(view, "Compra realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             }
-
-            // Atualiza o saldo do usuário no banco de dados e salva a transação
-            UsuarioDAO usuarioDAO = new UsuarioDAO(conn);
-            usuarioDAO.adicionarCriptomoeda(usuario, criptomoeda, quantidadeComprada, valorReais, valorCriptomoeda, valorReais * taxacao);
-
-            JOptionPane.showMessageDialog(janelaCompra, "Compra realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(janelaCompra, "Erro ao realizar a compra: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            conn.close();
         }
     }
 }

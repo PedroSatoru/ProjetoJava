@@ -111,13 +111,13 @@ public class UsuarioDAO {
             stmtUpdate.executeUpdate();
         }
         // Salvar a transação no extrato
-        String sqlInsert = "INSERT INTO transacao (cpf, tipo, valor, cotacao, taxa, saldo_reais, saldo_btc, saldo_eth, saldo_xrp, moeda) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    String sqlInsert = "INSERT INTO public.transacao (cpf, data_hora, tipo, valor, cotacao, taxa, saldo_reais, saldo_btc, saldo_eth, saldo_xrp, moeda) VALUES (?, CAST(TO_CHAR(CURRENT_TIMESTAMP, 'YYYY-MM-DD HH24:MI:SS') AS TIMESTAMP), ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmtInsert = conn.prepareStatement(sqlInsert)) {
             stmtInsert.setString(1, usuario.getCpf());
-            stmtInsert.setString(2, "COMPRA");
-            stmtInsert.setDouble(3, valor);
-            stmtInsert.setDouble(4, cotacao);
-            stmtInsert.setDouble(5, taxa);
+            stmtInsert.setString(2, "+");
+            stmtInsert.setDouble(3, 1);
+            stmtInsert.setDouble(4, 0);
+            stmtInsert.setDouble(5, 0);
             stmtInsert.setDouble(6, usuario.getReais());
             stmtInsert.setDouble(7, usuario.getBtc());
             stmtInsert.setDouble(8, usuario.getEth());

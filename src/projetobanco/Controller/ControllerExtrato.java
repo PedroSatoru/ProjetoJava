@@ -40,7 +40,7 @@ public class ControllerExtrato {
                 double saldoXrp = rs.getDouble("saldo_xrp");
                 String moeda = rs.getString("moeda");
 
-                extrato.append(String.format("%s   %s   %.2f  %s  CT: %.2f  TX: %.2f  REAL: %.2f  BTC: %.2f  ETH: %.2f   RIP: %.2f\n",
+                extrato.append(String.format("%s   %s   %.2f  %s  CT: %.2f  TX: %.2f  REAL: %.2f  BTC: %.8f  ETH: %.8f   RIP: %.8f\n",
                         dataHora, tipo, valor, moeda, cotacao, taxa, saldoReais, saldoBtc, saldoEth, saldoXrp));
             }
 

@@ -241,6 +241,7 @@ public class JanelaVenda extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         btComprar = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -271,6 +272,7 @@ public class JanelaVenda extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel1.setText("Qual moeda você deseja vender?");
 
+        buttonGroup1.add(btBit);
         btBit.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btBit.setText("BITCOIN");
         btBit.addActionListener(new java.awt.event.ActionListener() {
@@ -279,6 +281,7 @@ public class JanelaVenda extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(btRip);
         btRip.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btRip.setText("RIPPLE");
         btRip.addActionListener(new java.awt.event.ActionListener() {
@@ -287,6 +290,7 @@ public class JanelaVenda extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(btEth);
         btEth.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btEth.setText("ETHERUM");
         btEth.addActionListener(new java.awt.event.ActionListener() {
@@ -453,6 +457,7 @@ public class JanelaVenda extends javax.swing.JFrame {
     private javax.swing.JRadioButton btRip;
     private javax.swing.JButton btSair;
     private javax.swing.JButton btValores;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtValor;

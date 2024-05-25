@@ -259,6 +259,7 @@ public class JanelaCompra extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel1.setText("Qual moeda você deseja comprar?");
 
+        buttonGroup1.add(btBit);
         btBit.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btBit.setText("BITCOIN");
         btBit.addActionListener(new java.awt.event.ActionListener() {
@@ -267,6 +268,7 @@ public class JanelaCompra extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(btRip);
         btRip.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btRip.setText("RIPPLE");
         btRip.addActionListener(new java.awt.event.ActionListener() {
@@ -275,6 +277,7 @@ public class JanelaCompra extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(btEth);
         btEth.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
         btEth.setText("ETHERUM");
         btEth.addActionListener(new java.awt.event.ActionListener() {

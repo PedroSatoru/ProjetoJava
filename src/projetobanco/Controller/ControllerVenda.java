@@ -4,30 +4,29 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import projetobanco.DAO.Conexao;
 import projetobanco.Model.Usuario;
-import projetobanco.View.JanelaCompra;
+import projetobanco.View.JanelaVenda;
 
-public class ControllerCompra {
+public class ControllerVenda {
 
-    private JanelaCompra view;
+    private JanelaVenda view;
     private Usuario usuario;
 
-    public ControllerCompra(JanelaCompra view, Usuario usuario) {
+    public ControllerVenda(JanelaVenda view, Usuario usuario) {
         this.view = view;
         this.usuario = usuario;
     }
-Conexao conexao = new Conexao();
-    public void comprarCriptomoeda(String criptomoeda, double valorReais) throws SQLException {
+
+    public void venderCriptomoeda(String criptomoeda, double quantidade) throws SQLException {
         Conexao conexao = new Conexao();
         Connection conn = conexao.getConnection();
 
         String sqlSelectSaldo = "SELECT reais, btc, eth, rip FROM public.usuario WHERE cpf = ?";
         String sqlUpdateSaldo = "UPDATE public.usuario SET reais = ?, btc = ?, eth = ?, rip = ? WHERE cpf = ?";
         String sqlSelectCotacao = "SELECT btc, eth, xrp FROM public.criptomoedas WHERE id = 1"; // Assume-se que as cotações estão no registro com id=1
-        String sqlInsertTransacao = "INSERT INTO public.transacao (cpf, data_hora, tipo, valor, cotacao, taxa, saldo_reais, saldo_btc, saldo_eth, saldo_xrp, moeda) VALUES (?, CAST(TO_CHAR(CURRENT_TIMESTAMP, 'YYYY-MM-DD HH24:MI:SS') AS TIMESTAMP), ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqlInsertTransacao = "INSERT INTO public.transacao (cpf, data_hora, tipo, valor, cotacao, taxa, saldo_reais, saldo_btc, saldo_eth, saldo_xrp, moeda) VALUES (?, CURRENT_TIMESTAMP, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         double cotacao = 0.0;
         double taxa = 0.00; 
@@ -44,7 +43,7 @@ Conexao conexao = new Conexao();
                         break;
                     case "Etherum":
                         cotacao = resultSetCotacao.getDouble("eth");
-                        taxa= 0.01;
+                        taxa = 0.02;
                         break;
                     case "Ripple":
                         cotacao = resultSetCotacao.getDouble("xrp");
@@ -57,7 +56,8 @@ Conexao conexao = new Conexao();
             }
         }
 
-        double quantidadeComprada = valorReais / cotacao * (1 - taxa);
+        // Calcular valor em reais da venda
+        double valorReais = quantidade * cotacao * (1 - taxa);
 
         try (PreparedStatement statementSelectSaldo = conn.prepareStatement(sqlSelectSaldo)) {
             statementSelectSaldo.setString(1, usuario.getCpf());
@@ -69,23 +69,29 @@ Conexao conexao = new Conexao();
                 double saldoETH = resultSet.getDouble("eth");
                 double saldoXRP = resultSet.getDouble("rip");
 
-                if (saldoReaisAtual < valorReais) {
-                    JOptionPane.showMessageDialog(view, "Você não possui saldo suficiente para essa operação");
+                if (saldoBTC < quantidade && criptomoeda.equals("Bitcoin")) {
+                    JOptionPane.showMessageDialog(view, "Você não possui saldo suficiente de Bitcoin para essa operação");
+                    return;
+                } else if (saldoETH < quantidade && criptomoeda.equals("Etherum")) {
+                    JOptionPane.showMessageDialog(view, "Você não possui saldo suficiente de Etherum para essa operação");
+                    return;
+                } else if (saldoXRP < quantidade && criptomoeda.equals("Ripple")) {
+                    JOptionPane.showMessageDialog(view, "Você não possui saldo suficiente de Ripple para essa operação");
                     return;
                 }
 
-                double novoSaldoReais = saldoReaisAtual - valorReais;
+                double novoSaldoReais = saldoReaisAtual + valorReais;
 
                 // Atualizar saldos de criptomoedas
                 switch (criptomoeda) {
                     case "Bitcoin":
-                        saldoBTC += quantidadeComprada;
+                        saldoBTC -= quantidade;
                         break;
                     case "Etherum":
-                        saldoETH += quantidadeComprada;
+                        saldoETH -= quantidade;
                         break;
                     case "Ripple":
-                        saldoXRP += quantidadeComprada;
+                        saldoXRP -= quantidade;
                         break;
                 }
 
@@ -112,10 +118,10 @@ Conexao conexao = new Conexao();
                     statementInsertTransacao.executeUpdate();
                 }
 
-                JOptionPane.showMessageDialog(view, "Compra realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(view, "Venda realizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             }
         } finally {
             conn.close();
         }
     }
-    }
+}

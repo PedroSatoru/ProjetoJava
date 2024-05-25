@@ -18,10 +18,17 @@ import projetobanco.Model.Usuario;
 public class ControllerCadastro {
     private JanelaCriaUsuario view;
 
+    /**
+     *
+     * @param view
+     */
     public ControllerCadastro(JanelaCriaUsuario view) {
         this.view = view;
     }
     
+    /**
+     *
+     */
     public void salvarUsuario() {
         String nome = view.getTxtEntrada_nome().getText();
         String cpf = view.getTxtEntrada_cpf().getText();

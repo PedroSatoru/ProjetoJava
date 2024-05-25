@@ -8,17 +8,31 @@ import projetobanco.DAO.Conexao;
 import projetobanco.DAO.CriptomoedaDAO;
 import projetobanco.View.JanelaMenu;
 
+/**
+ *
+ * @author Pedro Satoru
+ */
 public class ControllerMenu {
     private JanelaMenu view;
 
+    /**
+     *
+     * @param view
+     */
     public ControllerMenu(JanelaMenu view) {
         this.view = view;
     }
 
+    /**
+     *
+     */
     public void abrirMenu() {
         atualizarValoresCriptomoedas();
     }
 
+    /**
+     *
+     */
     public void atualizarValoresCriptomoedas() {
         Conexao conexao = new Conexao();
         try {

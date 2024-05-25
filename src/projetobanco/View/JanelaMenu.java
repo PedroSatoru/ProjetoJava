@@ -29,6 +29,7 @@ public class JanelaMenu extends javax.swing.JFrame {
     private ControllerMenu control = new ControllerMenu(this);
     /**
      * Creates new form JanelaMenu
+     * @param usuario
      */
     public JanelaMenu(Usuario usuario) {
         this.usuario = usuario;

@@ -10,6 +10,16 @@ package projetobanco.Model;
  */
 public class Carteira extends Usuario {
     
+    /**
+     *
+     * @param nome
+     * @param cpf
+     * @param senha
+     * @param reais
+     * @param btc
+     * @param eth
+     * @param rip
+     */
     public Carteira(String nome, String cpf, String senha, Double reais, Double btc, Double eth, Double rip) {
         super(nome, cpf, senha, reais, btc, eth, rip);
     }

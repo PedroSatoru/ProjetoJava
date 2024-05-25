@@ -10,16 +10,32 @@ import projetobanco.DAO.Conexao;
 import projetobanco.Model.Usuario;
 import projetobanco.View.JanelaCompra;
 
+/**
+ *
+ * @author Pedro Satoru
+ */
 public class ControllerCompra {
 
     private JanelaCompra view;
     private Usuario usuario;
 
+    /**
+     *
+     * @param view
+     * @param usuario
+     */
     public ControllerCompra(JanelaCompra view, Usuario usuario) {
         this.view = view;
         this.usuario = usuario;
     }
 Conexao conexao = new Conexao();
+
+    /**
+     *
+     * @param criptomoeda
+     * @param valorReais
+     * @throws SQLException
+     */
     public void comprarCriptomoeda(String criptomoeda, double valorReais) throws SQLException {
         Conexao conexao = new Conexao();
         Connection conn = conexao.getConnection();

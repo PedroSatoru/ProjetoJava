@@ -19,10 +19,19 @@ import projetobanco.View.JanelaExtrato;
 public class ControllerExtrato {
     private UsuarioDAO usuarioDAO;
 
+    /**
+     *
+     * @param conn
+     */
     public ControllerExtrato(Connection conn) {
         this.usuarioDAO = new UsuarioDAO(conn);
     }
 
+    /**
+     *
+     * @param janela
+     * @param usuario
+     */
     public void mostrarExtrato(JanelaExtrato janela, Usuario usuario) {
         try {
             ResultSet rs = usuarioDAO.ConsultaExtrato(usuario.getCpf());

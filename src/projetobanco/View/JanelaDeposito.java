@@ -23,6 +23,11 @@ public class JanelaDeposito extends javax.swing.JFrame {
      * Creates new form JanelaDeposito
      */
     private Usuario usuario;
+
+    /**
+     *
+     * @param usuario
+     */
     public JanelaDeposito(Usuario usuario) {
         this.usuario=usuario;
         initComponents();
@@ -30,34 +35,66 @@ public class JanelaDeposito extends javax.swing.JFrame {
         control = new ControllerDeposito(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getBtDepositar() {
         return btDepositar;
     }
 
+    /**
+     *
+     * @param btDepositar
+     */
     public void setBtDepositar(JButton btDepositar) {
         this.btDepositar = btDepositar;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel1() {
         return jLabel1;
     }
 
+    /**
+     *
+     * @param jLabel1
+     */
     public void setjLabel1(JLabel jLabel1) {
         this.jLabel1 = jLabel1;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getLbNome() {
         return lbNome;
     }
 
+    /**
+     *
+     * @param lbNome
+     */
     public void setLbNome(JLabel lbNome) {
         this.lbNome = lbNome;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtValor() {
         return txtValor;
     }
 
+    /**
+     *
+     * @param txtValor
+     */
     public void setTxtValor(JTextField txtValor) {
         this.txtValor = txtValor;
     }

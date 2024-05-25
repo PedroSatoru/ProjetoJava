@@ -12,13 +12,28 @@ import java.sql.PreparedStatement;
 
 
 import projetobanco.Model.Usuario;
+
+/**
+ *
+ * @author Pedro Satoru
+ */
 public class UsuarioDAO {
     private Connection conn;
 
+    /**
+     *
+     * @param conn
+     */
     public UsuarioDAO(Connection conn) {
         this.conn = conn;
     }
     
+    /**
+     *
+     * @param usuario
+     * @return
+     * @throws SQLException
+     */
     public ResultSet consultar (Usuario usuario) throws SQLException {
         String sql = "select * from usuario where cpf = ? and senha = ?";
 
@@ -29,6 +44,12 @@ public class UsuarioDAO {
         ResultSet resultado = statement.getResultSet();
         return resultado;
     }
+
+    /**
+     *
+     * @param usuario
+     * @throws SQLException
+     */
     public void inserir (Usuario usuario) throws SQLException{
         String sql = "insert into usuario (nome, cpf, senha) values " 
                 + "('"+usuario.getNome()+"', '"+usuario.getCpf()+"', '"+usuario.getSenha()+"')";
@@ -37,6 +58,12 @@ public class UsuarioDAO {
         conn.close();
     }
 
+    /**
+     *
+     * @param cpf
+     * @param valorDeposito
+     * @throws SQLException
+     */
     public void deposito(String cpf, double valorDeposito) throws SQLException {
         String sqlSelect = "SELECT reais FROM public.usuario WHERE cpf = ?";
         String sqlUpdate = "UPDATE public.usuario SET reais = ? WHERE cpf = ?";
@@ -57,6 +84,13 @@ public class UsuarioDAO {
             }
         }
     }
+
+    /**
+     *
+     * @param cpf
+     * @param valorDeposito
+     * @throws SQLException
+     */
     public void saque(String cpf, double valorDeposito) throws SQLException {
         String sqlSelect = "SELECT reais FROM public.usuario WHERE cpf = ?";
         String sqlUpdate = "UPDATE public.usuario SET reais = ? WHERE cpf = ?";
@@ -77,6 +111,13 @@ public class UsuarioDAO {
             }
         }
     }
+
+    /**
+     *
+     * @param cpf
+     * @return
+     * @throws SQLException
+     */
     public Usuario obterUsuarioPorCpf(String cpf) throws SQLException {
         String sql = "SELECT * FROM public.usuario WHERE cpf = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
@@ -96,12 +137,30 @@ public class UsuarioDAO {
             }
         }
     }
-   public ResultSet ConsultaExtrato(String cpf) throws SQLException {
+
+    /**
+     *
+     * @param cpf
+     * @return
+     * @throws SQLException
+     */
+    public ResultSet ConsultaExtrato(String cpf) throws SQLException {
         String sql = "SELECT * FROM public.transacao WHERE cpf = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, cpf);
         return statement.executeQuery();
     }
+
+    /**
+     *
+     * @param usuario
+     * @param criptomoeda
+     * @param quantidade
+     * @param valor
+     * @param cotacao
+     * @param taxa
+     * @throws SQLException
+     */
     public void adicionarCriptomoeda(Usuario usuario, String criptomoeda, double quantidade, double valor, double cotacao, double taxa) throws SQLException {
         
         String sqlUpdate = "UPDATE usuario SET " + criptomoeda.toLowerCase() + " = " + criptomoeda.toLowerCase() + " + ? WHERE cpf = ?";

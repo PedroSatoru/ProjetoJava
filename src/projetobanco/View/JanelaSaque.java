@@ -24,6 +24,11 @@ public class JanelaSaque extends javax.swing.JFrame {
      * Creates new form JanelaSaque
      */
     private Usuario usuario;
+
+    /**
+     *
+     * @param usuario
+     */
     public JanelaSaque(Usuario usuario) {
         this.usuario=usuario;
         initComponents();
@@ -32,34 +37,66 @@ public class JanelaSaque extends javax.swing.JFrame {
         
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getBtSacar() {
         return btSacar;
     }
 
+    /**
+     *
+     * @param btSacar
+     */
     public void setBtSacar(JButton btSacar) {
         this.btSacar = btSacar;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel1() {
         return jLabel1;
     }
 
+    /**
+     *
+     * @param jLabel1
+     */
     public void setjLabel1(JLabel jLabel1) {
         this.jLabel1 = jLabel1;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getTxtNome() {
         return txtNome;
     }
 
+    /**
+     *
+     * @param txtNome
+     */
     public void setTxtNome(JLabel txtNome) {
         this.txtNome = txtNome;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtValor() {
         return txtValor;
     }
 
+    /**
+     *
+     * @param txtValor
+     */
     public void setTxtValor(JTextField txtValor) {
         this.txtValor = txtValor;
     }

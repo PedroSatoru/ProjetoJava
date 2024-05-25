@@ -20,31 +20,59 @@ import projetobanco.Model.Usuario;
 public class JanelaSenhaSaque extends javax.swing.JFrame {
     private Usuario usuario;
   
+    /**
+     *
+     * @param usuario
+     */
     public JanelaSenhaSaque(Usuario usuario) {
         this.usuario = usuario;
         initComponents();
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getBtSaldo() {
         return btSaldo;
     }
 
+    /**
+     *
+     * @param btSaldo
+     */
     public void setBtSaldo(JButton btSaldo) {
         this.btSaldo = btSaldo;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel1() {
         return jLabel1;
     }
 
+    /**
+     *
+     * @param jLabel1
+     */
     public void setjLabel1(JLabel jLabel1) {
         this.jLabel1 = jLabel1;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtSenha() {
         return txtSenha;
     }
 
+    /**
+     *
+     * @param txtSenha
+     */
     public void setTxtSenha(JTextField txtSenha) {
         this.txtSenha = txtSenha;
     }

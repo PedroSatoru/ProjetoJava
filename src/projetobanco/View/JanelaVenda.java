@@ -20,12 +20,22 @@ import java.sql.ResultSet;
 import projetobanco.Controller.ControllerVenda;
 import projetobanco.Model.Cotacoes;
 
+/**
+ *
+ * @author Pedro Satoru
+ */
 public class JanelaVenda extends javax.swing.JFrame {
 
   private Usuario usuario;
   private Cotacoes cotacoes;
   private ControllerVenda control;
   
+    /**
+     *
+     * @param usuario
+     * @param cotacoes
+     * @throws SQLException
+     */
     public JanelaVenda(Usuario usuario, Cotacoes cotacoes) throws SQLException {
         this.usuario=usuario;
         control = new ControllerVenda(this,this.usuario);
@@ -34,98 +44,194 @@ public class JanelaVenda extends javax.swing.JFrame {
         initComponents();
     }
 
+    /**
+     *
+     * @return
+     */
     public Usuario getUsuario() {
         return usuario;
     }
 
+    /**
+     *
+     * @param usuario
+     */
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
+    /**
+     *
+     * @return
+     */
     public Cotacoes getCotacoes() {
         return cotacoes;
     }
 
+    /**
+     *
+     * @param cotacoes
+     */
     public void setCotacoes(Cotacoes cotacoes) {
         this.cotacoes = cotacoes;
     }
 
+    /**
+     *
+     * @return
+     */
     public ControllerVenda getControl() {
         return control;
     }
 
+    /**
+     *
+     * @param control
+     */
     public void setControl(ControllerVenda control) {
         this.control = control;
     }
 
+    /**
+     *
+     * @return
+     */
     public JRadioButton getBtBit() {
         return btBit;
     }
 
+    /**
+     *
+     * @param btBit
+     */
     public void setBtBit(JRadioButton btBit) {
         this.btBit = btBit;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getBtComprar() {
         return btComprar;
     }
 
+    /**
+     *
+     * @param btComprar
+     */
     public void setBtComprar(JButton btComprar) {
         this.btComprar = btComprar;
     }
 
+    /**
+     *
+     * @return
+     */
     public JRadioButton getBtEth() {
         return btEth;
     }
 
+    /**
+     *
+     * @param btEth
+     */
     public void setBtEth(JRadioButton btEth) {
         this.btEth = btEth;
     }
 
+    /**
+     *
+     * @return
+     */
     public JRadioButton getBtRip() {
         return btRip;
     }
 
+    /**
+     *
+     * @param btRip
+     */
     public void setBtRip(JRadioButton btRip) {
         this.btRip = btRip;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getBtSair() {
         return btSair;
     }
 
+    /**
+     *
+     * @param btSair
+     */
     public void setBtSair(JButton btSair) {
         this.btSair = btSair;
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getBtValores() {
         return btValores;
     }
 
+    /**
+     *
+     * @param btValores
+     */
     public void setBtValores(JButton btValores) {
         this.btValores = btValores;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel1() {
         return jLabel1;
     }
 
+    /**
+     *
+     * @param jLabel1
+     */
     public void setjLabel1(JLabel jLabel1) {
         this.jLabel1 = jLabel1;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel5() {
         return jLabel5;
     }
 
+    /**
+     *
+     * @param jLabel5
+     */
     public void setjLabel5(JLabel jLabel5) {
         this.jLabel5 = jLabel5;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtValor() {
         return txtValor;
     }
 
+    /**
+     *
+     * @param txtValor
+     */
     public void setTxtValor(JTextField txtValor) {
         this.txtValor = txtValor;
     }
@@ -282,6 +388,7 @@ public class JanelaVenda extends javax.swing.JFrame {
         }catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Erro ao realizar a compra: " + ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
+        this.dispose();
     }//GEN-LAST:event_btComprarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed

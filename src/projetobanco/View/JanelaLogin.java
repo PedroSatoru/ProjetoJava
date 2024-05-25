@@ -17,72 +17,138 @@ import projetobanco.Controller.ControllerLogin;
  */
 public class JanelaLogin extends javax.swing.JFrame {
 
-   
+    /**
+     *
+     */
     public JanelaLogin() {
         initComponents();
         control = new ControllerLogin(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getBtLogin() {
         return btLogin;
     }
 
+    /**
+     *
+     * @param btLogin
+     */
     public void setBtLogin(JButton btLogin) {
         this.btLogin = btLogin;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel1() {
         return jLabel1;
     }
 
+    /**
+     *
+     * @param jLabel1
+     */
     public void setjLabel1(JLabel jLabel1) {
         this.jLabel1 = jLabel1;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel2() {
         return jLabel2;
     }
 
+    /**
+     *
+     * @param jLabel2
+     */
     public void setjLabel2(JLabel jLabel2) {
         this.jLabel2 = jLabel2;
     }
 
+    /**
+     *
+     * @return
+     */
     public JMenu getjMenu1() {
         return jMenu1;
     }
 
+    /**
+     *
+     * @param jMenu1
+     */
     public void setjMenu1(JMenu jMenu1) {
         this.jMenu1 = jMenu1;
     }
 
+    /**
+     *
+     * @return
+     */
     public JMenu getjMenu2() {
         return jMenu2;
     }
 
+    /**
+     *
+     * @param jMenu2
+     */
     public void setjMenu2(JMenu jMenu2) {
         this.jMenu2 = jMenu2;
     }
 
+    /**
+     *
+     * @return
+     */
     public JMenuBar getjMenuBar1() {
         return jMenuBar1;
     }
 
+    /**
+     *
+     * @param jMenuBar1
+     */
     public void setjMenuBar1(JMenuBar jMenuBar1) {
         this.jMenuBar1 = jMenuBar1;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtSenha() {
         return txtSenha;
     }
 
+    /**
+     *
+     * @param txtSenha
+     */
     public void setTxtSenha(JTextField txtSenha) {
         this.txtSenha = txtSenha;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtCpf() {
         return txtCpf;
     }
 
+    /**
+     *
+     * @param txtCpf
+     */
     public void setTxtCpf(JTextField txtCpf) {
         this.txtCpf = txtCpf;
     }

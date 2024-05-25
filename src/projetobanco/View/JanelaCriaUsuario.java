@@ -23,58 +23,114 @@ public class JanelaCriaUsuario extends javax.swing.JFrame {
         controller = new ControllerCadastro(this);
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getBtCriaUsuario() {
         return btCriaUsuario;
     }
 
+    /**
+     *
+     * @param btCriaUsuario
+     */
     public void setBtCriaUsuario(JButton btCriaUsuario) {
         this.btCriaUsuario = btCriaUsuario;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel2() {
         return jLabel2;
     }
 
+    /**
+     *
+     * @param jLabel2
+     */
     public void setjLabel2(JLabel jLabel2) {
         this.jLabel2 = jLabel2;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel3() {
         return jLabel3;
     }
 
+    /**
+     *
+     * @param jLabel3
+     */
     public void setjLabel3(JLabel jLabel3) {
         this.jLabel3 = jLabel3;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getLabelNome() {
         return labelNome;
     }
 
+    /**
+     *
+     * @param labelNome
+     */
     public void setLabelNome(JLabel labelNome) {
         this.labelNome = labelNome;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtEntrada_cpf() {
         return txtEntrada_cpf;
     }
 
+    /**
+     *
+     * @param txtEntrada_cpf
+     */
     public void setTxtEntrada_cpf(JTextField txtEntrada_cpf) {
         this.txtEntrada_cpf = txtEntrada_cpf;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtEntrada_nome() {
         return txtEntrada_nome;
     }
 
+    /**
+     *
+     * @param txtEntrada_nome
+     */
     public void setTxtEntrada_nome(JTextField txtEntrada_nome) {
         this.txtEntrada_nome = txtEntrada_nome;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtEntrada_senha() {
         return txtEntrada_senha;
     }
 
+    /**
+     *
+     * @param txtEntrada_senha
+     */
     public void setTxtEntrada_senha(JTextField txtEntrada_senha) {
         this.txtEntrada_senha = txtEntrada_senha;
     }

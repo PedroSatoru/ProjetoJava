@@ -31,7 +31,11 @@ public class JanelaExtrato extends javax.swing.JFrame {
     private Usuario usuario;
     private Connection conn;
     
-
+    /**
+     *
+     * @param usuario
+     * @throws SQLException
+     */
     public JanelaExtrato(Usuario usuario) throws SQLException {
         this.usuario = usuario;
         Conexao conexao = new Conexao();
@@ -40,42 +44,82 @@ public class JanelaExtrato extends javax.swing.JFrame {
         initComponents();
     }
 
+    /**
+     *
+     * @return
+     */
     public JButton getjButton1() {
         return jButton1;
     }
 
+    /**
+     *
+     * @param jButton1
+     */
     public void setjButton1(JButton jButton1) {
         this.jButton1 = jButton1;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel1() {
         return jLabel1;
     }
 
+    /**
+     *
+     * @param jLabel1
+     */
     public void setjLabel1(JLabel jLabel1) {
         this.jLabel1 = jLabel1;
     }
 
+    /**
+     *
+     * @return
+     */
     public JScrollPane getTxtExtrato() {
         return txtExtrato;
     }
 
+    /**
+     *
+     * @param txtExtrato
+     */
     public void setTxtExtrato(JScrollPane txtExtrato) {
         this.txtExtrato = txtExtrato;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextArea getTxtExtrato1() {
         return txtExtrato1;
     }
 
+    /**
+     *
+     * @param txtExtrato1
+     */
     public void setTxtExtrato1(JTextArea txtExtrato1) {
         this.txtExtrato1 = txtExtrato1;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtSenha() {
         return txtSenha;
     }
 
+    /**
+     *
+     * @param txtSenha
+     */
     public void setTxtSenha(JTextField txtSenha) {
         this.txtSenha = txtSenha;
     }

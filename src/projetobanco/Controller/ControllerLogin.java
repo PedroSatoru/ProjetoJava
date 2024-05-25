@@ -15,13 +15,24 @@ import projetobanco.Model.Usuario;
 import projetobanco.View.JanelaLogin;
 import projetobanco.View.JanelaMenu;
 
+/**
+ *
+ * @author Pedro Satoru
+ */
 public class ControllerLogin {
     private JanelaLogin view;
 
+    /**
+     *
+     * @param view
+     */
     public ControllerLogin(JanelaLogin view) {
         this.view = view;
     }
     
+    /**
+     *
+     */
     public void loginUsuario(){
         Usuario usuario = new Usuario(null, view.getTxtCpf().getText(),
                                             view.getTxtSenha().getText());

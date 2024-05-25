@@ -21,6 +21,8 @@ public class JanelaSaldo extends javax.swing.JFrame {
 
     /**
      * Creates new form JanelaSaldo
+     * @param usuario
+     * @param conn
      */
     public JanelaSaldo(Usuario usuario,  Connection conn) {
         this.usuario = usuario;
@@ -30,106 +32,210 @@ public class JanelaSaldo extends javax.swing.JFrame {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel1() {
         return jLabel1;
     }
 
+    /**
+     *
+     * @param jLabel1
+     */
     public void setjLabel1(JLabel jLabel1) {
         this.jLabel1 = jLabel1;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel2() {
         return jLabel2;
     }
 
+    /**
+     *
+     * @param jLabel2
+     */
     public void setjLabel2(JLabel jLabel2) {
         this.jLabel2 = jLabel2;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel3() {
         return jLabel3;
     }
 
+    /**
+     *
+     * @param jLabel3
+     */
     public void setjLabel3(JLabel jLabel3) {
         this.jLabel3 = jLabel3;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel4() {
         return jLabel4;
     }
 
+    /**
+     *
+     * @param jLabel4
+     */
     public void setjLabel4(JLabel jLabel4) {
         this.jLabel4 = jLabel4;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel5() {
         return jLabel5;
     }
 
+    /**
+     *
+     * @param jLabel5
+     */
     public void setjLabel5(JLabel jLabel5) {
         this.jLabel5 = jLabel5;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getjLabel7() {
         return jLabel7;
     }
 
+    /**
+     *
+     * @param jLabel7
+     */
     public void setjLabel7(JLabel jLabel7) {
         this.jLabel7 = jLabel7;
     }
 
+    /**
+     *
+     * @return
+     */
     public JPanel getjPanel1() {
         return jPanel1;
     }
 
+    /**
+     *
+     * @param jPanel1
+     */
     public void setjPanel1(JPanel jPanel1) {
         this.jPanel1 = jPanel1;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getLbBtc() {
         return lbBtc;
     }
 
+    /**
+     *
+     * @param lbBtc
+     */
     public void setLbBtc(JLabel lbBtc) {
         this.lbBtc = lbBtc;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getLbCpf() {
         return lbCpf;
     }
 
+    /**
+     *
+     * @param lbCpf
+     */
     public void setLbCpf(JLabel lbCpf) {
         this.lbCpf = lbCpf;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getLbEth() {
         return lbEth;
     }
 
+    /**
+     *
+     * @param lbEth
+     */
     public void setLbEth(JLabel lbEth) {
         this.lbEth = lbEth;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getLbNome() {
         return lbNome;
     }
 
+    /**
+     *
+     * @param lbNome
+     */
     public void setLbNome(JLabel lbNome) {
         this.lbNome = lbNome;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getLbReais() {
         return lbReais;
     }
 
+    /**
+     *
+     * @param lbReais
+     */
     public void setLbReais(JLabel lbReais) {
         this.lbReais = lbReais;
     }
 
+    /**
+     *
+     * @return
+     */
     public JLabel getLbRip() {
         return lbRip;
     }
 
+    /**
+     *
+     * @param lbRip
+     */
     public void setLbRip(JLabel lbRip) {
         this.lbRip = lbRip;
     }

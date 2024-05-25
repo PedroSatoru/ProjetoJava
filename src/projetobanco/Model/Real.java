@@ -10,6 +10,10 @@ package projetobanco.Model;
  */
 public class Real extends Moedas {
 
+    /**
+     *
+     * @param valor
+     */
     public Real(double valor) {
         super(valor, "Real");
     }

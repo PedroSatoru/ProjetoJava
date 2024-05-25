@@ -21,10 +21,20 @@ public class ControllSaque {
     
     private JanelaSaque view;
 
+    /**
+     *
+     * @param view
+     */
     public ControllSaque(JanelaSaque view) {
         this.view = view;
     }
     
+    /**
+     *
+     * @param usuario
+     * @param valorDeposito
+     * @throws SQLException
+     */
     public void Saquar(Usuario usuario, double valorDeposito) throws SQLException {
     Conexao conexao = new Conexao();
     Connection conn = conexao.getConnection();

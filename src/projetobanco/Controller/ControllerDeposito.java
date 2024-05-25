@@ -22,13 +22,21 @@ import java.sql.PreparedStatement;
 public class ControllerDeposito {
     private JanelaDeposito view;
 
+    /**
+     *
+     * @param view
+     */
     public ControllerDeposito(JanelaDeposito view) {
         this.view = view;
     }
     
-
-        
-public void depositar(Usuario usuario, double valorDeposito) throws SQLException {
+    /**
+     *
+     * @param usuario
+     * @param valorDeposito
+     * @throws SQLException
+     */
+    public void depositar(Usuario usuario, double valorDeposito) throws SQLException {
     Conexao conexao = new Conexao();
     Connection conn = conexao.getConnection();
 

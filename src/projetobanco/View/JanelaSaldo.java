@@ -240,6 +240,7 @@ public class JanelaSaldo extends javax.swing.JFrame {
         this.lbRip = lbRip;
     }
      private void atualizarDadosUsuario() {
+         //atualiza as informaçoes do usuario ao entrar na janela
         try {
             Usuario usuarioAtualizado = control.atualizarDadosUsuario(usuario.getCpf());
 

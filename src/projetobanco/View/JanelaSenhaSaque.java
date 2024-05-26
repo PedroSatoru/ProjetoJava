@@ -18,6 +18,7 @@ import projetobanco.Model.Usuario;
  * @author Pedro Satoru
  */
 public class JanelaSenhaSaque extends javax.swing.JFrame {
+    //NOME DA JANELA ESTA ERRADO, O CORRETO SERIA SENHA SALDO
     private Usuario usuario;
   
     /**
@@ -138,6 +139,7 @@ public class JanelaSenhaSaque extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaldoActionPerformed
+        //Verifica se a senha do usuario esta correta
         String senha= this.getTxtSenha().getText();
         Conexao conexao = new Conexao();
         try{

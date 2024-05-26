@@ -14,7 +14,7 @@ import projetobanco.View.JanelaVenda;
  * @author Pedro Satoru
  */
 public class ControllerVenda {
-
+    //mesmos comentariosde controllerCompra
     private JanelaVenda view;
     private Usuario usuario;
 

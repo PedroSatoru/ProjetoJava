@@ -20,7 +20,7 @@ public class Conexao {
      * @throws SQLException
      */
     public Connection getConnection() throws SQLException {
-
+        //conexão com banco de dados
         Connection conexao = DriverManager.getConnection(
             "jdbc:postgresql://localhost:5432/banco2",
             "postgres", "fei");

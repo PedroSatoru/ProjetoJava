@@ -41,6 +41,7 @@ public class JanelaMenu extends javax.swing.JFrame {
     }
 
    private void atualizarCotacoes() {
+       //atualiza as cotações ao abrir a janela de menu
        Conexao conexao = new Conexao();
         String query = "SELECT * FROM criptomoedas";
         try (Connection conn = conexao.getConnection();
@@ -203,6 +204,7 @@ public class JanelaMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSaldoActionPerformed
+        //passa a janela o usuario que fez login
         Conexao conexao = new Conexao();
         try {
         Connection conn = conexao.getConnection(); // Supondo que você tenha um método para obter a conexão

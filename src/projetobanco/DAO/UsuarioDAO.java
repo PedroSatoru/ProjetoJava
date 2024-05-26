@@ -35,6 +35,7 @@ public class UsuarioDAO {
      * @throws SQLException
      */
     public ResultSet consultar (Usuario usuario) throws SQLException {
+        //verificar se o usuario existe na tabela usuarios pelo cpf e senha
         String sql = "select * from usuario where cpf = ? and senha = ?";
 
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -51,6 +52,7 @@ public class UsuarioDAO {
      * @throws SQLException
      */
     public void inserir (Usuario usuario) throws SQLException{
+        //adicionar o usuario a tabela de usuarios
         String sql = "insert into usuario (nome, cpf, senha) values " 
                 + "('"+usuario.getNome()+"', '"+usuario.getCpf()+"', '"+usuario.getSenha()+"')";
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -65,6 +67,7 @@ public class UsuarioDAO {
      * @throws SQLException
      */
     public void deposito(String cpf, double valorDeposito) throws SQLException {
+        //função de depositar
         String sqlSelect = "SELECT reais FROM public.usuario WHERE cpf = ?";
         String sqlUpdate = "UPDATE public.usuario SET reais = ? WHERE cpf = ?";
 
@@ -92,6 +95,7 @@ public class UsuarioDAO {
      * @throws SQLException
      */
     public void saque(String cpf, double valorDeposito) throws SQLException {
+        //função de saque
         String sqlSelect = "SELECT reais FROM public.usuario WHERE cpf = ?";
         String sqlUpdate = "UPDATE public.usuario SET reais = ? WHERE cpf = ?";
 
@@ -119,6 +123,7 @@ public class UsuarioDAO {
      * @throws SQLException
      */
     public Usuario obterUsuarioPorCpf(String cpf) throws SQLException {
+        //receber o usuario pelo cpf
         String sql = "SELECT * FROM public.usuario WHERE cpf = ?";
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setString(1, cpf);
@@ -145,6 +150,7 @@ public class UsuarioDAO {
      * @throws SQLException
      */
     public ResultSet ConsultaExtrato(String cpf) throws SQLException {
+        //procurar pelas transaçções feitas por um cpf na tabela de extrato
         String sql = "SELECT * FROM public.transacao WHERE cpf = ?";
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setString(1, cpf);
@@ -162,14 +168,14 @@ public class UsuarioDAO {
      * @throws SQLException
      */
     public void adicionarCriptomoeda(Usuario usuario, String criptomoeda, double quantidade, double valor, double cotacao, double taxa) throws SQLException {
-        
+        //atualiza a quantidade de criptomedas do usuario na tabela usuario
         String sqlUpdate = "UPDATE usuario SET " + criptomoeda.toLowerCase() + " = " + criptomoeda.toLowerCase() + " + ? WHERE cpf = ?";
         try (PreparedStatement stmtUpdate = conn.prepareStatement(sqlUpdate)) {
             stmtUpdate.setDouble(1, quantidade);
             stmtUpdate.setString(2, usuario.getCpf());
             stmtUpdate.executeUpdate();
         }
-        // Salvar a transação no extrato
+        //salva a transação no extrato
     String sqlInsert = "INSERT INTO public.transacao (cpf, data_hora, tipo, valor, cotacao, taxa, saldo_reais, saldo_btc, saldo_eth, saldo_xrp, moeda) VALUES (?, CAST(TO_CHAR(CURRENT_TIMESTAMP, 'YYYY-MM-DD HH24:MI:SS') AS TIMESTAMP), ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement stmtInsert = conn.prepareStatement(sqlInsert)) {
             stmtInsert.setString(1, usuario.getCpf());

@@ -16,6 +16,7 @@ public class ProjetoBanco {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //abre a janela de login
         JanelaLogin Jl = new JanelaLogin();
         Jl.setVisible(true);
     }

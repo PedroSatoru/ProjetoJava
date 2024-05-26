@@ -11,7 +11,7 @@ package projetobanco.Model;
 public class Usuario {
      private String nome, cpf, senha;
      private Double reais, btc, eth, rip;
-
+     //recebe todas as informações dos usuario
     /**
      *
      * @param nome

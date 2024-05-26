@@ -5,6 +5,7 @@ package projetobanco.Model;
  * @author Pedro Satoru
  */
 public class Cotacoes {
+    //recebe tods os valores de todas as criptos
     private double btc;
     private double eth;
     private double xrp;

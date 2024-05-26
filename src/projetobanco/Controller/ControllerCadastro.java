@@ -30,16 +30,19 @@ public class ControllerCadastro {
      *
      */
     public void salvarUsuario() {
+        //receber as informações da janela
         String nome = view.getTxtEntrada_nome().getText();
         String cpf = view.getTxtEntrada_cpf().getText();
         String senha = view.getTxtEntrada_senha().getText();
 
         if (!isCpfValid(cpf)) {
+            //informar que o cpf é invalido
             JOptionPane.showMessageDialog(view, "CPF inválido! Certifique-se de que contém exatamente 11 dígitos e não possui caracteres especiais.", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
          if (!isSenhaValid(senha)) {
+             //informar que a senha é invalida
             JOptionPane.showMessageDialog(view, "Senha inválida! A senha deve ser numérica e conter exatamente 6 dígitos.", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -51,7 +54,7 @@ public class ControllerCadastro {
             Connection conn = conexao.getConnection();
             System.out.println("conectou");
             UsuarioDAO dao = new UsuarioDAO(conn);
-            dao.inserir(usuario);
+            dao.inserir(usuario);//passa os dados a função inserir da DAO
             JOptionPane.showMessageDialog(view, "Usuário cadastrado!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
             view.dispose();
         } catch (SQLException ex) {
@@ -61,7 +64,7 @@ public class ControllerCadastro {
     }
 
     private boolean isCpfValid(String cpf) {
-        // Remove caracteres especiais
+        //remove caracteres especiais
         String cpfClean = cpf.replaceAll("[^0-9]", "");
 
         // Verifica se o CPF tem 11 dígitos
@@ -70,7 +73,7 @@ public class ControllerCadastro {
     }
     
     private boolean isSenhaValid(String senha) {
-        // Verifica se a senha contém exatamente 6 dígitos numéricos
+        //verifica se a senha contém exatamente 6 dígitos numéricos
         return senha.matches("\\d{6}");
     }
 }

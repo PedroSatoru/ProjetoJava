@@ -27,6 +27,7 @@ public class ControllerMenu {
      *
      */
     public void abrirMenu() {
+        //chama a função de atualizar
         atualizarValoresCriptomoedas();
     }
 
@@ -34,6 +35,7 @@ public class ControllerMenu {
      *
      */
     public void atualizarValoresCriptomoedas() {
+        //chama a função de atuapizar da criptomoedasDAO
         Conexao conexao = new Conexao();
         try {
             Connection conn = conexao.getConnection();

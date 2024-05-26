@@ -21,7 +21,9 @@ import projetobanco.Model.Cotacoes;
  * @author Pedro Satoru
  */
 public class JanelaCompra extends javax.swing.JFrame {
-    
+    //inicio se aplica a todas as tabelas 
+    //comentarios extamente iguais para janelaVenda
+    //cria todos os models que serão usados e o contrller da janela especifica
     private ControllerCompra control;
     private Usuario usuario;
     private Cotacoes cotacoes;
@@ -33,6 +35,7 @@ public class JanelaCompra extends javax.swing.JFrame {
      * @throws SQLException
      */
     public JanelaCompra(Usuario usuario, Cotacoes cotacoes) throws SQLException {
+        //estancia os models e controller
         this.usuario=usuario;
         this.cotacoes=cotacoes;
         control = new ControllerCompra(this,this.usuario);
@@ -378,6 +381,7 @@ public class JanelaCompra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
+        //botão para sair
         this.dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
@@ -386,6 +390,7 @@ public class JanelaCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btBitActionPerformed
 
     private void btComprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComprarActionPerformed
+        //verifica a criptomoeda selecionada, passa pro controller e realiza a operação
         String criptomoeda = "";
     if (btBit.isSelected()) {
         criptomoeda = "Bitcoin";
@@ -414,7 +419,9 @@ public class JanelaCompra extends javax.swing.JFrame {
     }//GEN-LAST:event_btRipActionPerformed
 
     private void btValoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btValoresActionPerformed
+        //mostra os valores atualizados das criptomoedas
         JOptionPane.showMessageDialog(this, "Valor de compra das moedas\n " +"Bitcoin: R$"+ cotacoes.getBtc() +"\n" + "Etherum: R$" +  cotacoes.getEth() + "\n" +  "Ripple: R$" + cotacoes.getXrp(), "Valores", JOptionPane.INFORMATION_MESSAGE);
+       
     }//GEN-LAST:event_btValoresActionPerformed
 
    

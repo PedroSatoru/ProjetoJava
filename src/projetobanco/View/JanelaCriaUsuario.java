@@ -220,6 +220,7 @@ public class JanelaCriaUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCriaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCriaUsuarioActionPerformed
+        //utiliza a função do controller
         controller.salvarUsuario();
     }//GEN-LAST:event_btCriaUsuarioActionPerformed
 

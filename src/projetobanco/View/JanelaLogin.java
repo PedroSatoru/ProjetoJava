@@ -247,11 +247,13 @@ public class JanelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
+        //chama a função de login
         control.loginUsuario();
         this.dispose();
     }//GEN-LAST:event_btLoginActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        //abre a janelaCriaUsuario
         JanelaCriaUsuario cf= new JanelaCriaUsuario();
         cf.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed

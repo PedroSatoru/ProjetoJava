@@ -214,6 +214,7 @@ public class JanelaExtrato extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       //Verifica a senha do usuario, caso esteja correta chama a função de mostrar extratos
         if (usuario.getSenha().equals(new String(txtSenha.getText()))) {
             control.mostrarExtrato(this, usuario);
         } else {

@@ -34,6 +34,7 @@ public class ControllerLogin {
      *
      */
     public void loginUsuario(){
+        //recebe os valores da janela
         Usuario usuario = new Usuario(null, view.getTxtCpf().getText(),
                                             view.getTxtSenha().getText());
         
@@ -41,8 +42,10 @@ public class ControllerLogin {
         try{
             Connection conn = conexao.getConnection();
             UsuarioDAO dao = new UsuarioDAO(conn);
+            //verifica a função "consultar" da usuarioDAO
             ResultSet res = dao.consultar(usuario);
             if (res.next()){
+                //caso o usuario exista, recebera as informações dele, e passara essas informações ao model usuario
                 JOptionPane.showMessageDialog(view, "Login feito!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 String nome = res.getString("nome");
                 String cpf = res.getString("cpf");
@@ -51,7 +54,6 @@ public class ControllerLogin {
                 Double btc = res.getDouble("btc");
                 Double eth = res.getDouble("eth");
                 Double rip = res.getDouble("rip");
-                
                 JanelaMenu viewUsuario = new JanelaMenu(new Usuario(nome,cpf,senha,real,btc,eth,rip));
                 viewUsuario.setVisible(true);
             }else{

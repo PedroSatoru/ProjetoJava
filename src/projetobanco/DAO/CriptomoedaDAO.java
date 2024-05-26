@@ -30,8 +30,9 @@ public class CriptomoedaDAO {
         String sqlSelect = "SELECT btc, eth, xrp FROM criptomoedas";
         String sqlUpdate = "UPDATE criptomoedas SET btc = ?, eth = ?, xrp = ?";
 
+        //porcentagem de 5% para mais ou menos
         Random rand = new Random();
-        double fator = 0.05; // 5%
+        double fator = 0.05; //5%
 
         try (PreparedStatement psSelect = conn.prepareStatement(sqlSelect);
              ResultSet rs = psSelect.executeQuery()) {
@@ -40,12 +41,14 @@ public class CriptomoedaDAO {
                 double btc = rs.getDouble("btc");
                 double eth = rs.getDouble("eth");
                 double xrp = rs.getDouble("xrp");
-
+                
+                //valores aleatorios para mais ou menos
                 btc += btc * (rand.nextDouble() * 2 * fator - fator);
                 eth += eth * (rand.nextDouble() * 2 * fator - fator);
                 xrp += xrp * (rand.nextDouble() * 2 * fator - fator);
 
                 try (PreparedStatement psUpdate = conn.prepareStatement(sqlUpdate)) {
+                    //atualiza os valores na tabela
                     psUpdate.setDouble(1, btc);
                     psUpdate.setDouble(2, eth);
                     psUpdate.setDouble(3, xrp);
@@ -61,6 +64,7 @@ public class CriptomoedaDAO {
      * @throws SQLException
      */
     public ResultSet obterUltimosValores() throws SQLException {
+        //recebe os valores das criptomoedas
         String sql = "SELECT btc, eth, xrp FROM criptomoedas";
         PreparedStatement ps = conn.prepareStatement(sql);
         return ps.executeQuery();
@@ -73,6 +77,7 @@ public class CriptomoedaDAO {
      * @throws SQLException
      */
     public double getValorCriptomoeda(String criptomoeda) throws SQLException {
+        //recebe o valr pelo nome
         String sql = "SELECT valor FROM criptomoedas WHERE nome = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, criptomoeda);

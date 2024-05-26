@@ -15,7 +15,7 @@ import projetobanco.View.JanelaCompra;
  * @author Pedro Satoru
  */
 public class ControllerCompra {
-
+    //Comentarios dessa janela se aplicam ao ControllerVenda tambem
     private JanelaCompra view;
     private Usuario usuario;
 
@@ -39,21 +39,23 @@ Conexao conexao = new Conexao();
     public void comprarCriptomoeda(String criptomoeda, double valorReais) throws SQLException {
         Conexao conexao = new Conexao();
         Connection conn = conexao.getConnection();
-
+        
+        //faz a conexão com as tabelas, principalmente com a tabela de cotações de criptomoedas
         String sqlSelectSaldo = "SELECT reais, btc, eth, rip FROM public.usuario WHERE cpf = ?";
         String sqlUpdateSaldo = "UPDATE public.usuario SET reais = ?, btc = ?, eth = ?, rip = ? WHERE cpf = ?";
-        String sqlSelectCotacao = "SELECT btc, eth, xrp FROM public.criptomoedas WHERE id = 1"; // Assume-se que as cotações estão no registro com id=1
+        String sqlSelectCotacao = "SELECT btc, eth, xrp FROM public.criptomoedas WHERE id = 1"; 
         String sqlInsertTransacao = "INSERT INTO public.transacao (cpf, data_hora, tipo, valor, cotacao, taxa, saldo_reais, saldo_btc, saldo_eth, saldo_xrp, moeda) VALUES (?, CAST(TO_CHAR(CURRENT_TIMESTAMP, 'YYYY-MM-DD HH24:MI:SS') AS TIMESTAMP), ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        double cotacao = 0.0;
-        double taxa = 0.00; 
+        double cotacao = 0.0;//rcebera a cotação das criptomoedas
+        double taxa = 0.00; //recebe a taxa das criptomoedas
 
         // Obter cotação da criptomoeda
         try (PreparedStatement statementSelectCotacao = conn.prepareStatement(sqlSelectCotacao)) {
             ResultSet resultSetCotacao = statementSelectCotacao.executeQuery();
 
             if (resultSetCotacao.next()) {
-                switch (criptomoeda) {
+                switch (criptomoeda) { 
+                    //verifica o botão apertado, e seta os valores corretos 
                     case "Bitcoin":
                         cotacao = resultSetCotacao.getDouble("btc");
                         taxa = 0.02;
@@ -73,13 +75,15 @@ Conexao conexao = new Conexao();
             }
         }
 
-        double quantidadeComprada = valorReais / cotacao * (1 - taxa);
+        double quantidadeComprada = valorReais / cotacao * (1 - taxa); //fas a conta
 
         try (PreparedStatement statementSelectSaldo = conn.prepareStatement(sqlSelectSaldo)) {
+            //recebe o cpf da tabela usuario 
             statementSelectSaldo.setString(1, usuario.getCpf());
             ResultSet resultSet = statementSelectSaldo.executeQuery();
 
             if (resultSet.next()) {
+                //recebe os saldos do usuario
                 double saldoReaisAtual = resultSet.getDouble("reais");
                 double saldoBTC = resultSet.getDouble("btc");
                 double saldoETH = resultSet.getDouble("eth");
@@ -92,7 +96,7 @@ Conexao conexao = new Conexao();
 
                 double novoSaldoReais = saldoReaisAtual - valorReais;
 
-                // Atualizar saldos de criptomoedas
+                //atualizar saldos de criptomoedas
                 switch (criptomoeda) {
                     case "Bitcoin":
                         saldoBTC += quantidadeComprada;
@@ -106,6 +110,7 @@ Conexao conexao = new Conexao();
                 }
 
                 try (PreparedStatement statementUpdateSaldo = conn.prepareStatement(sqlUpdateSaldo)) {
+                    //atualizar saldos do usuario
                     statementUpdateSaldo.setDouble(1, novoSaldoReais);
                     statementUpdateSaldo.setDouble(2, saldoBTC);
                     statementUpdateSaldo.setDouble(3, saldoETH);
@@ -115,6 +120,7 @@ Conexao conexao = new Conexao();
                 }
 
                 try (PreparedStatement statementInsertTransacao = conn.prepareStatement(sqlInsertTransacao)) {
+                    //atualizar extrato
                     statementInsertTransacao.setString(1, usuario.getCpf());
                     statementInsertTransacao.setString(2, "+");
                     statementInsertTransacao.setDouble(3, valorReais);

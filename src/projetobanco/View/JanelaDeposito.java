@@ -18,6 +18,7 @@ import projetobanco.Model.Usuario;
  * @author Pedro Satoru
  */
 public class JanelaDeposito extends javax.swing.JFrame {
+    //comentarios se aplicam a janelaSaque
 
     /**
      * Creates new form JanelaDeposito
@@ -31,7 +32,7 @@ public class JanelaDeposito extends javax.swing.JFrame {
     public JanelaDeposito(Usuario usuario) {
         this.usuario=usuario;
         initComponents();
-        lbNome.setText(usuario.getNome());
+        lbNome.setText(usuario.getNome()); //modifica a label para aparecer o nome do usuario
         control = new ControllerDeposito(this);
     }
 
@@ -185,6 +186,7 @@ public class JanelaDeposito extends javax.swing.JFrame {
 
  
         String valorStr = this.getTxtValor().getText();
+        //recebe as informações e utiliza o contrller 
         try {
             double valorDeposito = Double.parseDouble(valorStr);
             control.depositar(usuario, valorDeposito);
